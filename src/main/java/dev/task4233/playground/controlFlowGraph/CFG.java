@@ -1,6 +1,9 @@
-package dev.task4233.playground.cfg;
+package dev.task4233.playground.controlFlowGraph;
 import java.io.File;
 import java.io.IOException;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+
 
 import org.xmlpull.v1.XmlPullParserException;
 
@@ -19,6 +22,7 @@ public class CFG {
     private static String androidJar = USER_HOME + "/Library/Android/sdk/platforms";
     // TODO: it's good to collect APIs from directory
     static String apkPath = System.getProperty("user.dir") + File.separator + "samples" + File.separator + "simple_calculator_14.apk";
+    static final Logger logger = LogManager.getLogger(CFG.class.getName());
 
     public static void main(String[] args) {
         // update android_home

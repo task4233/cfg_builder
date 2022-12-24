@@ -2,7 +2,7 @@ package dev.task4233.playground;
 
 import java.util.Arrays;
 
-import dev.task4233.playground.cfg.CFG;
+import dev.task4233.playground.controlFlowGraph.CFG;
 
 public class Main {
     public static void main(String[] args) {

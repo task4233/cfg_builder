@@ -3,7 +3,7 @@
  */
 import org.junit.Test;
 
-import dev.task4233.playground.cfg.CFG;
+import dev.task4233.playground.controlFlowGraph.CFG;
 
 import static org.junit.Assert.*;
 
