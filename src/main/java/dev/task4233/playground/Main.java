@@ -1,7 +1,5 @@
 package dev.task4233.playground;
 
-import java.util.Arrays;
-
 import dev.task4233.playground.controlFlowGraph.CFG;
 
 public class Main {
@@ -10,10 +8,10 @@ public class Main {
             System.err.println("please add run option");
         }
 
-        String[] cmdArgs = Arrays.copyOfRange(args, 1, args.length);
         switch (args[0]) {
             case "cfg":
-                CFG.main(cmdArgs);
+                CFG cfg = new CFG();
+                cfg.constructCFG();
                 break;
             default:
                 System.err.print(args[0] + "is not defined");

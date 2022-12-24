@@ -7,5 +7,5 @@ clean:
 	./gradlew clean
 
 .PHONY: cfg
-cfg:
+cfg: build
 	./gradlew run --args="cfg"
