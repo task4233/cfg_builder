@@ -12,6 +12,7 @@ public class AndroidCallGraphFilter implements CallGraphFilter {
         return validClasses;
     }
 
+    // TODO: use hashSet
     private List<SootClass> validClasses = new ArrayList<>();
     public AndroidCallGraphFilter(String appPackageName) {
         for (SootClass sootClass : Scene.v().getApplicationClasses()) {
