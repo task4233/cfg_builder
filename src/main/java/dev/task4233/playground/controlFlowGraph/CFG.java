@@ -1,10 +1,14 @@
 package dev.task4233.playground.controlFlowGraph;
 
 import java.io.File;
+import java.io.FileWriter;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 
 import dev.task4233.playground.utils.AndroidCallGraphFilter;
 import dev.task4233.playground.utils.AndroidUtil;
@@ -21,6 +25,7 @@ import soot.Scene;
 import soot.SootClass;
 import soot.SootMethod;
 import soot.Unit;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class CFG {
     private String entrypointMethod = "onCreate";
@@ -28,11 +33,12 @@ public class CFG {
     private String androidJar = USER_HOME + "/Library/Android/sdk/platforms";
     private CallgraphAlgorithm cgAlgorithm = InfoflowConfiguration.CallgraphAlgorithm.SPARK;
     private Set<String> cache = new HashSet<>();
+    private Map<String, Integer> apiFreq = new ConcurrentHashMap<>();
 
     // TODO: coolecting all files in "samples directory"
     private String apkPath = System.getProperty("user.dir") + File.separator + "samples" + File.separator
-            // + "simple_calculator_14.apk";
-            //+ "tasks.apk";
+    // + "simple_calculator_14.apk";
+    // + "tasks.apk";
             + "calc_315.apk";
 
     public CFG() {
@@ -54,7 +60,8 @@ public class CFG {
         app.constructCallgraph();
         System.out.println("construction done");
 
-        // Set<String> userDefinedMethodSignatures = getUserDefinedMethodSignatures(this.apkPath);
+        // Set<String> userDefinedMethodSignatures =
+        // getUserDefinedMethodSignatures(this.apkPath);
 
         int classIdx = 0;
         CallGraph callGraph = Scene.v().getCallGraph();
@@ -86,6 +93,29 @@ public class CFG {
                         sootMethod.getName(), incomingEdge, outgoingEdge));
             }
         }
+
+        for (Map.Entry<String, Integer> freq : apiFreq.entrySet()) {
+            if (freq.getKey().startsWith("<com")) {
+                apiFreq.remove(freq.getKey());
+                continue;
+            }
+            System.out.printf("%s: %d\n", freq.getKey(), freq.getValue());
+        }
+
+        File file = null;
+        FileWriter filewriter = null;
+        try {
+            ObjectMapper objectMapper = new ObjectMapper();
+            String jsonAsString = objectMapper.writeValueAsString(apiFreq);
+
+            file = new File("apiFreq.json");
+            filewriter = new FileWriter(file);
+            filewriter.write(jsonAsString);
+            filewriter.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
     private SootMethod traverseMethod(SootMethod now) {// , Set<String> ignoredMethodSignatures) {
@@ -94,15 +124,17 @@ public class CFG {
         }
 
         // skip traverse if it's reached
-        if (!cache.add(now.getSignature())) {
-            /// System.out.println(String.format("%s is skipped.", now.toString()));
+        String signature = now.getSignature();
+        if (apiFreq.containsKey(signature)) {
+            apiFreq.put(signature, apiFreq.get(signature) + 1);
             return null;
         }
+        apiFreq.put(signature, 1);
 
         // ignore user-defined method
         // TODO: ignore user-defined method
-        if (!now.getSignature().startsWith("<com")) {
-            System.out.println(String.format("%s is called", now.getSignature()));
+        if (!signature.startsWith("<com")) {
+            System.out.println(String.format("%s is called", signature));
         }
 
         // check method content
@@ -114,9 +146,8 @@ public class CFG {
             if (stmt.containsInvokeExpr()) {
                 InvokeExpr expr = stmt.getInvokeExpr();
                 // System.out.println(String.format("\t\texpr = %s", expr.toString()));
-                traverseMethod(expr.getMethod()); //, ignoredMethodSignatures);
+                traverseMethod(expr.getMethod()); // , ignoredMethodSignatures);
             }
-
         }
         return null;
     }
