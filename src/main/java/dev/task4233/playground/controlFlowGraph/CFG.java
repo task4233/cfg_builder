@@ -31,7 +31,9 @@ public class CFG {
 
     // TODO: coolecting all files in "samples directory"
     private String apkPath = System.getProperty("user.dir") + File.separator + "samples" + File.separator
-            + "simple_calculator_14.apk";
+            // + "simple_calculator_14.apk";
+            //+ "tasks.apk";
+            + "calc_315.apk";
 
     public CFG() {
         // update android_home
@@ -44,16 +46,21 @@ public class CFG {
         // setup flowdroid
         final InfoflowAndroidConfiguration config = AndroidUtil.getFlowDroidConfig(this.apkPath, this.androidJar,
                 this.cgAlgorithm);
+        System.out.println("config done");
 
         // construct cfg without executing taint analysis
         SetupApplication app = new SetupApplication(config);
+        System.out.println("setup done");
         app.constructCallgraph();
+        System.out.println("construction done");
 
-        Set<String> userDefinedMethodSignatures = getUserDefinedMethodSignatures(this.apkPath);
+        // Set<String> userDefinedMethodSignatures = getUserDefinedMethodSignatures(this.apkPath);
 
         int classIdx = 0;
         CallGraph callGraph = Scene.v().getCallGraph();
         Set<SootClass> entrypointSet = app.getEntrypointClasses();
+
+        System.out.println("callgraph done");
 
         for (SootClass sootClass : entrypointSet) {
             System.out.println(String.format("Class %d: %s", ++classIdx, sootClass.getName()));
@@ -71,7 +78,7 @@ public class CFG {
                 int outgoingEdge = 0;
                 for (Iterator<Edge> it = callGraph.edgesOutOf(sootMethod); it.hasNext();) {
                     Edge edge = it.next();
-                    traverseMethod(edge.tgt(), userDefinedMethodSignatures);
+                    traverseMethod(edge.tgt()); // userDefinedMethodSignatures);
                     ++outgoingEdge;
                 }
 
@@ -81,18 +88,20 @@ public class CFG {
         }
     }
 
-    private SootMethod traverseMethod(SootMethod now, Set<String> ignoredMethodSignatures) {
-        if (now == null)
+    private SootMethod traverseMethod(SootMethod now) {// , Set<String> ignoredMethodSignatures) {
+        if (now == null) {
             return null;
+        }
+
+        // skip traverse if it's reached
+        if (!cache.add(now.getSignature())) {
+            /// System.out.println(String.format("%s is skipped.", now.toString()));
+            return null;
+        }
 
         // ignore user-defined method
         // TODO: ignore user-defined method
         if (!now.getSignature().startsWith("<com")) {
-            // skip traverse if it's reached
-            if (!cache.add(now.getSignature())) {
-                /// System.out.println(String.format("%s is skipped.", now.toString()));
-                return null;
-            }
             System.out.println(String.format("%s is called", now.getSignature()));
         }
 
@@ -105,7 +114,7 @@ public class CFG {
             if (stmt.containsInvokeExpr()) {
                 InvokeExpr expr = stmt.getInvokeExpr();
                 // System.out.println(String.format("\t\texpr = %s", expr.toString()));
-                traverseMethod(expr.getMethod(), ignoredMethodSignatures);
+                traverseMethod(expr.getMethod()); //, ignoredMethodSignatures);
             }
 
         }
