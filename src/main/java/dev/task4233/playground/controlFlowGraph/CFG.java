@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.FilenameFilter;
 import java.nio.file.Files;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -32,12 +33,13 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class CFG {
     private final String entrypointMethod = "onCreate";
-    private final static long apiSizeThreshold = 4040404;
+    // private final static long apiSizeThreshold = 10101010;
 
     private final static String USER_HOME = System.getProperty("user.home");
     private String androidJar = USER_HOME + "/Library/Android/sdk/platforms";
     private CallgraphAlgorithm cgAlgorithm = InfoflowConfiguration.CallgraphAlgorithm.SPARK;
-    private List<Map<String, Integer>> apiFreqs = new LinkedList<>();
+    private List<Map<String, Integer>> apiFreqs = new ArrayList<>();
+    private List<String> allApis = null;
 
     private String apkPath = System.getProperty("user.dir") + File.separator + "samples";
     private File[] apks = null;
@@ -64,9 +66,9 @@ public class CFG {
                 if (!fileName.endsWith(".apk")) {
                     return false;
                 }
-                if (file.length() > apiSizeThreshold) {
-                    return false;
-                }
+                // if (file.length() > apiSizeThreshold) {
+                //     return false;
+                // }
 
                 return true;
             }
@@ -81,11 +83,16 @@ public class CFG {
             this.justifyCFGWithIndex(idx);
         }
 
+        this.deriveAllApis();
         this.writeJSON();
     }
 
     // constructCFGWithIndex constructs CallFlowGraph with given index
     private void constructCFGWithIndex(int idx) {
+        System.out.printf("start for %s\n", this.apks[idx].getName());
+
+        long startTime = System.currentTimeMillis();
+
         final InfoflowAndroidConfiguration config = AndroidUtil.getFlowDroidConfig(
                 this.apks[idx].getAbsolutePath(), this.androidJar, this.cgAlgorithm);
         System.out.println("config done");
@@ -97,14 +104,13 @@ public class CFG {
         System.out.println("construction done");
 
         // ready callgraph
-        int classIdx = 0;
         CallGraph callGraph = Scene.v().getCallGraph();
         Set<SootClass> entrypointSet = app.getEntrypointClasses();
         System.out.println("callgraph done");
 
         // dig callgraph
         for (SootClass sootClass : entrypointSet) {
-            System.out.println(String.format("Class %d: %s", ++classIdx, sootClass.getName()));
+            // System.out.println(String.format("Class %d: %s", ++classIdx, sootClass.getName()));
 
             for (SootMethod sootMethod : sootClass.getMethods()) {
                 // skip methods except entrypointMethod
@@ -123,10 +129,22 @@ public class CFG {
                     ++outgoingEdge;
                 }
 
-                System.out.println(String.format("\tMethod %s, #IncomingEdges: %d, #OutgoingEdges: %d",
-                        sootMethod.getName(), incomingEdge, outgoingEdge));
+                // System.out.println(String.format("\tMethod %s, #IncomingEdges: %d, #OutgoingEdges: %d",
+                //         sootMethod.getName(), incomingEdge, outgoingEdge));
             }
         }
+
+        long endTime = System.currentTimeMillis();
+        System.out.printf("done in %d[ms]\n\n", endTime-startTime);
+    }
+
+    // deriveAllApis derives all system-apis with gathering sum of sets
+    private void deriveAllApis() {
+        Set<String> allApiSet = new HashSet<>();
+        for (int idx=0; idx<apiFreqs.size(); ++idx) {
+            allApiSet.addAll(apiFreqs.get(idx).keySet());
+        }
+        this.allApis = new ArrayList<>(allApiSet);
     }
 
     // justifyCFGWithIndex remove user-defined apis from apiFreqMap
@@ -138,7 +156,7 @@ public class CFG {
                 apiFreq.remove(freq.getKey());
                 continue;
             }
-            System.out.printf("%s: %d\n", freq.getKey(), freq.getValue());
+            // System.out.printf("%s: %d\n", freq.getKey(), freq.getValue());
         }
     }
 
@@ -160,9 +178,9 @@ public class CFG {
 
         // ignore user-defined method
         // TODO: might be good enhance this filter
-        if (!signature.startsWith("<com")) {
-            System.out.println(String.format("%s is called", signature));
-        }
+        // if (!signature.startsWith("<com")) {
+        //     System.out.println(String.format("%s is called", signature));
+        // }
 
         // check method content
         if (!now.hasActiveBody())
@@ -181,15 +199,26 @@ public class CFG {
 
     private void writeJSON() {
         File file = null;
-        FileWriter filewriter = null;
+        FileWriter fileWriter = null;
         try {
+            // TODO: make a new func for meeting the following flow
+            // because these operations are duplicated
+
+            // write apiFreq
             ObjectMapper objectMapper = new ObjectMapper();
             String jsonAsString = objectMapper.writeValueAsString(apiFreqs);
+            file = new File("./output/apiFreq.json");
+            fileWriter = new FileWriter(file);
+            fileWriter.write(jsonAsString);
+            fileWriter.close();
 
-            file = new File("apiFreq.json");
-            filewriter = new FileWriter(file);
-            filewriter.write(jsonAsString);
-            filewriter.close();
+            // write allApiSets
+            objectMapper = new ObjectMapper();
+            jsonAsString = objectMapper.writeValueAsString(allApis);
+            file = new File("./output/allApis.json");
+            fileWriter = new FileWriter(file);
+            fileWriter.write(jsonAsString);
+            fileWriter.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
