@@ -32,7 +32,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class CFG {
     private List<Map<String, Integer>> apiFreqs = new ArrayList<>();
+    private List<List<String>> apiSequences = new ArrayList<>();
     private List<String> allApis = null;
+
 
     private String apkPath = System.getProperty("user.dir") + File.separator + "samples";
     private File[] apks = null;
@@ -42,6 +44,7 @@ public class CFG {
         this.apks = this.collectApks(this.apkPath);
         for (int idx = 0; idx < apks.length; ++idx) {
             apiFreqs.add(new ConcurrentHashMap<String, Integer>());
+            apiSequences.add(new ArrayList<>());
         }
     }
 
@@ -73,6 +76,7 @@ public class CFG {
         jobs.stream().forEach(job -> {
             ReturnedValue res = job.call();
             this.apiFreqs.set(res.getIdx(), res.getApiFreq());
+            this.apiSequences.set(res.getIdx(), res.getApiSequence());
         });
 
         this.deriveAllApis();
@@ -89,29 +93,27 @@ public class CFG {
     }
 
     private void writeJSON() {
-        File file = null;
-        FileWriter fileWriter = null;
         try {
             // TODO: make a new func for meeting the following flow
             // because these operations are duplicated
+            ObjectMapper objectMapper = new ObjectMapper();
 
             // write apiFreq
-            ObjectMapper objectMapper = new ObjectMapper();
-            String jsonAsString = objectMapper.writeValueAsString(apiFreqs);
-            file = new File("./output/apiFreq.json");
-            fileWriter = new FileWriter(file);
-            fileWriter.write(jsonAsString);
-            fileWriter.close();
-
+            writeJSONWithFileName(objectMapper, "./output/apiFreq.json", apiFreqs);
             // write allApiSets
-            objectMapper = new ObjectMapper();
-            jsonAsString = objectMapper.writeValueAsString(allApis);
-            file = new File("./output/allApis.json");
-            fileWriter = new FileWriter(file);
-            fileWriter.write(jsonAsString);
-            fileWriter.close();
+            writeJSONWithFileName(objectMapper, "./output/allApis.json", allApis);
+            // write apiSequences
+            writeJSONWithFileName(objectMapper, "./output/apiSequece.json", apiSequences);
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private void writeJSONWithFileName(ObjectMapper mapper, String dstFilePath, Object writtenData) throws Exception {
+        String jsonAsString = mapper.writeValueAsString(writtenData);
+        File file = new File(dstFilePath);
+        FileWriter fileWriter = new FileWriter(file);
+        fileWriter.write(jsonAsString);
+        fileWriter.close();
     }
 }

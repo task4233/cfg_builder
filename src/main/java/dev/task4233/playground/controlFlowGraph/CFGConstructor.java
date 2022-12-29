@@ -2,10 +2,15 @@ package dev.task4233.playground.controlFlowGraph;
 
 import java.io.File;
 import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
+import java.util.Random;
 import java.util.Set;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ConcurrentHashMap;
+
+import com.google.common.collect.Iterators;
 
 import dev.task4233.playground.utils.AndroidUtil;
 import soot.Body;
@@ -23,6 +28,8 @@ import soot.jimple.toolkits.callgraph.Edge;
 
 public class CFGConstructor implements Callable<ReturnedValue> {
     // private final static long apiSizeThreshold = 10101010;
+    private final static int randomWalkThreshold = 101010;
+
     private final static String USER_HOME = System.getProperty("user.home");
     private final static String androidJar = System.getenv().containsKey("ANDROID_HOME")
             ? System.getenv("ANDROID_HOME") + File.separator + "platforms"
@@ -32,7 +39,12 @@ public class CFGConstructor implements Callable<ReturnedValue> {
     private File apk = null;
     private Map<String, Integer> apiFreq = new ConcurrentHashMap<>();
 
+    private SetupApplication app = null;
+    private CallGraph callGraph = null;
+    private Set<SootClass> entrypointSet = null;
     private CallgraphAlgorithm cgAlgorithm = CallgraphAlgorithm.SPARK;
+    private Random rnd = new Random();
+    private List<String> apiSequence = new LinkedList<>();
 
     public CFGConstructor(int idx, File apk) {
         this.idx = idx;
@@ -41,30 +53,20 @@ public class CFGConstructor implements Callable<ReturnedValue> {
 
     @Override
     public ReturnedValue call() {
+        this.init();
         this.constructCFG();
         this.justifyCFG();
+        this.genApiSequence();
 
-        return new ReturnedValue(this.idx, this.apiFreq);
+        return new ReturnedValue(this.idx, this.apiFreq, this.apiSequence);
     }
 
     // constructCFG constructs CallFlowGraph with given index
     private void constructCFG() {
-        System.out.printf("start for %s\n", this.apk.getName());
-
+        System.out.printf("start constructCFG for %s\n", this.apk.getName());
         long startTime = System.currentTimeMillis();
 
-        final InfoflowAndroidConfiguration config = AndroidUtil.getFlowDroidConfig(
-                this.apk.getAbsolutePath(), androidJar, this.cgAlgorithm);
-        // System.out.printf("config done for %s\n", this.apk.getName());
-
-        // construct cfg without executing taint analysis
-        SetupApplication app = new SetupApplication(config);
-        // System.out.println("setup done");
-        app.constructCallgraph(); // heavy
-        // System.out.printf("construction done for %s\n", this.apk.getName());
-
         // ready callgraph
-        CallGraph callGraph = Scene.v().getCallGraph();
         Set<SootClass> entrypointSet = app.getEntrypointClasses();
         // System.out.printf("callgraph done for %s\n", this.apk.getName());
 
@@ -97,7 +99,40 @@ public class CFGConstructor implements Callable<ReturnedValue> {
         }
 
         long endTime = System.currentTimeMillis();
-        System.out.printf("done in %d[ms]\n\n", endTime - startTime);
+        System.out.printf("done constructCFG in %d[ms]\n\n", endTime - startTime);
+    }
+
+    private void genApiSequence() {
+        System.out.printf("start getApiSequence for %s\n", this.apk.getName());
+        long startTime = System.currentTimeMillis();
+
+        for (SootClass sootClass : entrypointSet) {
+            for (SootMethod sootMethod : sootClass.getMethods()) {
+                if (!sootMethod.getName().equals(entrypointMethod)) {
+                    continue;
+                }
+                this.randomWalk(sootMethod, 0);
+            }
+        }
+
+        long endTime = System.currentTimeMillis();
+        System.out.printf("done getApiSequence in %d[ms]\n\n", endTime - startTime);
+    }
+
+    private void init() {
+        System.out.printf("start init for %s\n", this.apk.getName());
+
+        final InfoflowAndroidConfiguration config = AndroidUtil.getFlowDroidConfig(
+                this.apk.getAbsolutePath(), androidJar, this.cgAlgorithm);
+        // System.out.printf("config done for %s\n", this.apk.getName());
+
+        // construct cfg without executing taint analysis
+        this.app = new SetupApplication(config);
+        this.app.constructCallgraph(); // heavy
+        this.callGraph = Scene.v().getCallGraph();
+        this.entrypointSet = this.app.getEntrypointClasses();
+
+        System.out.printf("done init for %s\n", this.apk.getName());
     }
 
     // justifyCFG remove user-defined apis from apiFreqMap
@@ -108,6 +143,85 @@ public class CFGConstructor implements Callable<ReturnedValue> {
                 continue;
             }
             // System.out.printf("%s: %d\n", freq.getKey(), freq.getValue());
+        }
+    }
+
+    private void randomWalk(SootMethod now, int count) {
+        if (now == null) {
+            return;
+        }
+        if (count >= randomWalkThreshold) {
+            return;
+        }
+
+        // boolean isUserDefinedAPI = now.getSignature().startsWith("<com");
+        this.apiSequence.add(now.getSignature());
+
+        Iterator<Edge> inIt = callGraph.edgesInto(now);
+        Iterator<Edge> outIt = callGraph.edgesOutOf(now);
+        int inSize = Iterators.size(inIt);
+        int outSize = Iterators.size(outIt);
+        // System.out.printf("[%d] %s, in: %d, out: %d\n", count, now.getSignature(), inSize, outSize);
+
+        inIt = callGraph.edgesInto(now);
+        outIt = callGraph.edgesOutOf(now);
+        if (!inIt.hasNext() && !outIt.hasNext()) {
+            System.out.printf("in & out edge is not found");
+            return;
+        }
+
+        // 0->backward, 1->forward
+        int choice = this.rnd.nextInt(2);
+        if (!inIt.hasNext()) {
+            choice = 1;
+        }
+        if (!outIt.hasNext()) {
+            choice = 0;
+        }
+
+        // omit because it might be same as callGraph.edgesOutOf(now)
+        // if (now.hasActiveBody()) {
+        //     Body body = now.getActiveBody();
+        //     for (Unit u : body.getUnits()) {
+        //         Stmt stmt = (Stmt) u;
+        //         if (stmt.containsInvokeExpr()) {
+        //             InvokeExpr expr = stmt.getInvokeExpr();
+        //             System.out.println(String.format("\t\texpr = %s", expr.toString()));
+        //         }
+        //     }
+        // }
+
+        int nextIdx;
+        Edge next = null;
+        switch (choice) {
+            case 0:
+                // backward
+                do {
+                    nextIdx = this.rnd.nextInt(inSize);
+                    // System.out.printf("[0] %s, next: %d, size: %d\n", now.getSignature(), nextIdx, inSize);
+                    inIt = callGraph.edgesInto(now);
+                    if (nextIdx > 0) {
+                        next = Iterators.get(inIt, nextIdx);
+                    }
+                    next = inIt.next();
+                } while(next == null || next.src() == null);
+                randomWalk(next.src(), count + 1);
+                return;
+            case 1:
+                // forward
+                do {
+                    nextIdx = this.rnd.nextInt(outSize);
+                    // System.out.printf("[1] %s, next: %d, size: %d\n", now.getSignature(), nextIdx, outSize);
+                    outIt = callGraph.edgesOutOf(now);
+                    if (nextIdx > 0) {
+                        next = Iterators.get(outIt, nextIdx);
+                    }
+                    next = outIt.next();
+                } while (next == null || next.tgt() == null);
+                randomWalk(next.tgt(), count + 1);
+                return;
+            default:
+                System.out.println("invalid choice");
         }
     }
 
@@ -132,17 +246,23 @@ public class CFGConstructor implements Callable<ReturnedValue> {
         // }
 
         // check method content
-        if (!now.hasActiveBody())
-            return null;
-        Body body = now.getActiveBody();
-        for (Unit u : body.getUnits()) {
-            Stmt stmt = (Stmt) u;
-            if (stmt.containsInvokeExpr()) {
-                InvokeExpr expr = stmt.getInvokeExpr();
-                // System.out.println(String.format("\t\texpr = %s", expr.toString()));
-                traverseMethod(expr.getMethod());
-            }
+        for (Iterator<Edge> it = callGraph.edgesOutOf(now); it.hasNext(); it.hasNext()) {
+            Edge next = it.next();
+            if (next.tgt() == null) continue;
+            traverseMethod(next.tgt());
         }
+
+        // if (!now.hasActiveBody())
+        //     return null;
+        // Body body = now.getActiveBody();
+        // for (Unit u : body.getUnits()) {
+        //     Stmt stmt = (Stmt) u;
+        //     if (stmt.containsInvokeExpr()) {
+        //         InvokeExpr expr = stmt.getInvokeExpr();
+        //         // System.out.println(String.format("\t\texpr = %s", expr.toString()));
+        //         traverseMethod(expr.getMethod());
+        //     }
+        // }
         return null;
     }
 }
