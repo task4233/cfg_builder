@@ -1,0 +1,501 @@
+./gradlew clean
+Starting a Gradle Daemon, 1 incompatible and 1 stopped Daemons could not be reused, use --status for details
+> Task :clean
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 8.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+See https://docs.gradle.org/7.4.2/userguide/command_line_interface.html#sec:command_line_warnings
+
+BUILD SUCCESSFUL in 2s
+1 actionable task: 1 executed
+./gradlew build
+> Task :compileJava
+> Task :processResources NO-SOURCE
+> Task :classes
+> Task :jar
+> Task :startScripts
+> Task :distTar
+> Task :distZip
+> Task :assemble
+> Task :compileTestJava
+> Task :processTestResources NO-SOURCE
+> Task :testClasses
+> Task :test
+> Task :check
+> Task :build
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 8.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+See https://docs.gradle.org/7.4.2/userguide/command_line_interface.html#sec:command_line_warnings
+
+BUILD SUCCESSFUL in 3s
+7 actionable tasks: 7 executed
+./gradlew run --args="cfg"
+> Task :compileJava UP-TO-DATE
+> Task :processResources NO-SOURCE
+> Task :classes UP-TO-DATE
+
+> Task :run
+<com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity$14: void <init>(com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity)> is added
+<com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity$14: void onClick(android.view.View)> is added
+<com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity$13: void <init>(com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity)> is added
+<com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity$13: void onClick(android.view.View)> is added
+<com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity$16: void <init>(com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity)> is added
+<com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity$16: void onClick(android.view.View)> is added
+<com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity$15: void <init>(com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity)> is added
+<com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity$15: void onClick(android.view.View)> is added
+<com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity$10: void <init>(com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity)> is added
+<com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity$10: void onClick(android.view.View)> is added
+<com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity$12: void <init>(com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity)> is added
+<com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity$12: void onClick(android.view.View)> is added
+<com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity$11: void <init>(com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity)> is added
+<com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity$11: void onClick(android.view.View)> is added
+<com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity$18: void <init>(com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity)> is added
+<com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity$18: void onClick(android.view.View)> is added
+<com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity$17: void <init>(com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity)> is added
+<com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity$17: void onClick(android.view.View)> is added
+<com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity$19: void <init>(com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity,java.lang.String,boolean,boolean,boolean,if$b)> is added
+<com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity$19: void run()> is added
+<com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity$25: void <init>(com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity)> is added
+<com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity$25: void onClick(android.view.View)> is added
+<com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity$24: void <init>(com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity)> is added
+<com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity$24: void onClick(android.view.View)> is added
+<com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity$27: void <init>(com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity)> is added
+<com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity$27: void onClick(android.view.View)> is added
+<com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity$26: void <init>(com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity)> is added
+<com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity$26: void onClick(android.view.View)> is added
+<com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity$21: void <init>(com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity)> is added
+<com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity$21: void onClick(android.view.View)> is added
+<com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity$20: void <clinit>()> is added
+<com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity$23: void <init>(com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity)> is added
+<com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity$23: void onClick(android.view.View)> is added
+<com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity$22: void <init>(com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity)> is added
+<com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity$22: void onClick(android.view.View)> is added
+<com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity: void <init>()> is added
+<com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity: android.widget.TextView A(com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity)> is added
+<com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity: android.widget.TextView B(com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity)> is added
+<com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity: android.widget.Button a(com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity)> is added
+<com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity: void a(com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity$a)> is added
+<com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity: android.widget.Button b(com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity)> is added
+<com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity: android.widget.Button c(com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity)> is added
+<com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity: android.widget.Button d(com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity)> is added
+<com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity: android.widget.Button e(com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity)> is added
+<com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity: android.widget.Button f(com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity)> is added
+<com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity: android.widget.Button g(com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity)> is added
+<com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity: android.widget.Button h(com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity)> is added
+<com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity: android.widget.Button i(com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity)> is added
+<com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity: android.widget.Button j(com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity)> is added
+<com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity: android.widget.Button k(com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity)> is added
+<com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity: android.widget.Button l(com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity)> is added
+<com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity: android.widget.Button m(com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity)> is added
+<com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity: android.widget.Button n(com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity)> is added
+<com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity: android.widget.Button o(com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity)> is added
+<com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity: android.widget.Button p(com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity)> is added
+<com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity: android.widget.Button q(com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity)> is added
+<com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity: android.widget.Button r(com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity)> is added
+<com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity: android.widget.Button s(com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity)> is added
+<com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity: android.widget.Button t(com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity)> is added
+<com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity: android.widget.Button u(com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity)> is added
+<com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity: android.widget.Button v(com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity)> is added
+<com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity: android.widget.Button w(com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity)> is added
+<com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity: android.widget.Button x(com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity)> is added
+<com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity: 'if' y(com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity)> is added
+<com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity: android.widget.TextView z(com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity)> is added
+<com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity: void a(char,char)> is added
+<com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity: void a(int,android.graphics.PorterDuff$Mode)> is added
+<com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity: void a(java.lang.String,boolean,if$b,boolean,boolean)> is added
+<com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity: void j()> is added
+<com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity: void k()> is added
+<com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity: void l()> is added
+<com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity: void m()> is added
+<com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity: void onBackPressed()> is added
+<com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity: void onCreate(android.os.Bundle)> is added
+<com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity: boolean onCreateOptionsMenu(android.view.Menu)> is added
+<com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity: boolean onOptionsItemSelected(android.view.MenuItem)> is added
+<com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity: void onPause()> is added
+<com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity: void onResume()> is added
+<com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity: android.content.Intent getIntent()> is added
+<com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity: void setIntent(android.content.Intent)> is added
+<com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity: void setResult(int,android.content.Intent)> is added
+<com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity$a: void <clinit>()> is added
+<com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity$a: void <init>(java.lang.String,int)> is added
+<com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity$a: com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity$a valueOf(java.lang.String)> is added
+<com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity$a: com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity$a[] values()> is added
+<com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity$1: void <init>(com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity)> is added
+<com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity$5: void <init>(com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity)> is added
+<com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity$5: void onClick(android.view.View)> is added
+<com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity$4: void <init>(com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity)> is added
+<com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity$4: void onClick(android.view.View)> is added
+<com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity$3: void <init>(com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity)> is added
+<com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity$3: void onClick(android.view.View)> is added
+<com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity$2: void <init>(com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity)> is added
+<com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity$2: void onClick(android.view.View)> is added
+<com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity$9: void <init>(com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity)> is added
+<com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity$9: void onClick(android.view.View)> is added
+<com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity$8: void <init>(com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity)> is added
+<com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity$8: void onClick(android.view.View)> is added
+<com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity$7: void <init>(com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity)> is added
+<com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity$7: void onClick(android.view.View)> is added
+<com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity$6: void <init>(com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity)> is added
+<com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity$6: void onClick(android.view.View)> is added
+<com.sawicki.piotr.calculator.simple.simplecalculator.HelpActivity: void <init>()> is added
+<com.sawicki.piotr.calculator.simple.simplecalculator.HelpActivity: boolean g()> is added
+<com.sawicki.piotr.calculator.simple.simplecalculator.HelpActivity: void onCreate(android.os.Bundle)> is added
+<com.sawicki.piotr.calculator.simple.simplecalculator.HelpActivity: android.content.Intent getIntent()> is added
+<com.sawicki.piotr.calculator.simple.simplecalculator.HelpActivity: void setIntent(android.content.Intent)> is added
+<com.sawicki.piotr.calculator.simple.simplecalculator.HelpActivity: void setResult(int,android.content.Intent)> is added
+Class 1: com.sawicki.piotr.calculator.simple.simplecalculator.MainScreenActivity
+<android.graphics.Typeface: void <clinit>()> is called
+<'if': void a()> is called
+<java.math.BigDecimal: void <init>(java.lang.String)> is called
+<'if': void s()> is called
+<java.math.BigDecimal: int compareTo(java.math.BigDecimal)> is called
+<'if': void v()> is called
+<'if': void w()> is called
+<java.lang.Enum: int ordinal()> is called
+<java.lang.RuntimeException: void <init>(java.lang.String)> is called
+<java.lang.Exception: void <init>()> is called
+<java.lang.Throwable: void <init>()> is called
+<java.lang.Object: void <init>()> is called
+<java.util.ArrayList: java.util.Iterator iterator()> is called
+<java.util.Iterator: boolean hasNext()> is called
+<java.util.Iterator: java.lang.Object next()> is called
+<ie: void a(java.lang.String,boolean,if$b,boolean,boolean)> is called
+<'if': void a(boolean)> is called
+<'if': java.lang.String b(java.math.BigDecimal)> is called
+<java.math.BigDecimal: java.math.BigDecimal setScale(int,java.math.RoundingMode)> is called
+<java.text.NumberFormat: java.text.NumberFormat getInstance(java.util.Locale)> is called
+<java.text.DecimalFormat: java.text.DecimalFormatSymbols getDecimalFormatSymbols()> is called
+<java.text.DecimalFormatSymbols: void setGroupingSeparator(char)> is called
+<java.text.DecimalFormatSymbols: void setDecimalSeparator(char)> is called
+<java.text.DecimalFormat: void setDecimalFormatSymbols(java.text.DecimalFormatSymbols)> is called
+<java.text.DecimalFormat: void setMaximumIntegerDigits(int)> is called
+<java.text.DecimalFormat: void setMaximumFractionDigits(int)> is called
+<java.text.DecimalFormat: void setRoundingMode(java.math.RoundingMode)> is called
+<java.text.DecimalFormat: java.lang.String format(java.lang.Object)> is called
+<'if': java.lang.String a(java.lang.String,int)> is called
+<java.lang.String: int length()> is called
+<java.lang.StringBuilder: void <init>()> is called
+<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)> is called
+<java.lang.String: char charAt(int)> is called
+<java.lang.String: java.lang.String valueOf(char)> is called
+<java.lang.StringBuilder: java.lang.String toString()> is called
+<java.lang.Character: boolean isDigit(char)> is called
+<java.lang.String: boolean contains(java.lang.CharSequence)> is called
+<java.lang.String: boolean equals(java.lang.Object)> is called
+<java.lang.String: boolean endsWith(java.lang.String)> is called
+<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)> is called
+<android.util.Log: int d(java.lang.String,java.lang.String)> is called
+<java.lang.String: int indexOf(java.lang.String)> is called
+<java.lang.String: java.lang.String substring(int)> is called
+<java.lang.String: int indexOf(int)> is called
+<java.lang.String: java.lang.String substring(int,int)> is called
+<'if': void a(ie)> is called
+<java.util.ArrayList: boolean add(java.lang.Object)> is called
+<android.view.ContextThemeWrapper: android.content.res.AssetManager getAssets()> is called
+<ev: void a(android.support.v7.widget.Toolbar)> is called
+<ev: ex i()> is called
+<ex: ex a(android.app.Activity,ew)> is called
+<android.app.Activity: android.view.Window getWindow()> is called
+<ex: ex a(android.content.Context,android.view.Window,ew)> is called
+<fb: void <init>(android.content.Context,android.view.Window,ew)> is called
+<fa: void <init>(android.content.Context,android.view.Window,ew)> is called
+<ez: void <init>(android.content.Context,android.view.Window,ew)> is called
+<fc: void <init>(android.content.Context,android.view.Window,ew)> is called
+<ey: void <init>(android.content.Context,android.view.Window,ew)> is called
+<ex: void <init>()> is called
+<android.view.Window: android.view.Window$Callback getCallback()> is called
+<java.lang.IllegalStateException: void <init>(java.lang.String)> is called
+<ey: android.view.Window$Callback a(android.view.Window$Callback)> is called
+<ey$a: void <init>(ey,android.view.Window$Callback)> is called
+<fu: void <init>(android.view.Window$Callback)> is called
+<java.lang.IllegalArgumentException: void <init>(java.lang.String)> is called
+<android.view.Window: void setCallback(android.view.Window$Callback)> is called
+<fc$1: void <init>(fc)> is called
+<ex: void a(android.support.v7.widget.Toolbar)> is called
+<android.app.Activity: android.view.View findViewById(int)> is called
+<ev: void setContentView(int)> is called
+<ex: void a(int)> is called
+<android.view.ContextThemeWrapper: java.lang.String getPackageName()> is called
+<android.view.ContextThemeWrapper: android.content.pm.PackageManager getPackageManager()> is called
+<ev: void onCreate(android.os.Bundle)> is called
+<ex: void g()> is called
+<ex: void a(android.os.Bundle)> is called
+<j: void onCreate(android.os.Bundle)> is called
+<l: void a(i)> is called
+<o: void a(m,k,i)> is called
+<g: void onCreate(android.os.Bundle)> is called
+<android.app.Activity: android.view.LayoutInflater getLayoutInflater()> is called
+<android.view.LayoutInflater: android.view.LayoutInflater$Factory getFactory()> is called
+<android.view.LayoutInflater: void setFactory(android.view.LayoutInflater$Factory)> is called
+<android.app.Activity: void onCreate(android.os.Bundle)> is called
+<android.app.Activity: java.lang.Object getLastNonConfigurationInstance()> is called
+<l: void a(bk)> is called
+<m: void a(bk)> is called
+<android.os.Bundle: android.os.Parcelable getParcelable(java.lang.String)> is called
+<l: void a(android.os.Parcelable,java.util.List)> is called
+<o: void a(android.os.Parcelable,java.util.List)> is called
+<java.util.List: int size()> is called
+<java.util.List: java.lang.Object get(int)> is called
+<android.util.Log: int v(java.lang.String,java.lang.String)> is called
+<m: android.content.Context g()> is called
+<android.content.Context: java.lang.ClassLoader getClassLoader()> is called
+<android.os.Bundle: void setClassLoader(java.lang.ClassLoader)> is called
+<android.os.Bundle: android.util.SparseArray getSparseParcelableArray(java.lang.String)> is called
+<java.util.ArrayList: void <init>(int)> is called
+<java.util.ArrayList: void clear()> is called
+<q: i a(m,i)> is called
+<java.lang.StringBuilder: java.lang.StringBuilder append(int)> is called
+<java.util.ArrayList: void <init>()> is called
+<java.lang.Integer: java.lang.Integer valueOf(int)> is called
+<java.util.ArrayList: int size()> is called
+<java.util.ArrayList: java.lang.Object get(int)> is called
+<android.util.Log: int w(java.lang.String,java.lang.String)> is called
+<o: void a(java.lang.RuntimeException)> is called
+<java.lang.Throwable: java.lang.String getMessage()> is called
+<android.util.Log: int e(java.lang.String,java.lang.String)> is called
+<bh: void <init>(java.lang.String)> is called
+<java.io.Writer: void <init>()> is called
+<java.lang.StringBuilder: void <init>(int)> is called
+<java.io.PrintWriter: void <init>(java.io.Writer)> is called
+<m: void a(java.lang.String,java.io.FileDescriptor,java.io.PrintWriter,java.lang.String[])> is called
+<android.util.Log: int e(java.lang.String,java.lang.String,java.lang.Throwable)> is called
+<o: void a(java.lang.String,java.io.FileDescriptor,java.io.PrintWriter,java.lang.String[])> is called
+<java.io.PrintWriter: void print(java.lang.String)> is called
+<java.lang.System: int identityHashCode(java.lang.Object)> is called
+<java.lang.Integer: java.lang.String toHexString(int)> is called
+<java.io.PrintWriter: void println(java.lang.String)> is called
+<java.io.PrintWriter: void print(int)> is called
+<java.io.PrintWriter: void println(java.lang.Object)> is called
+<i: void a(java.lang.String,java.io.FileDescriptor,java.io.PrintWriter,java.lang.String[])> is called
+<java.io.PrintWriter: void println(int)> is called
+<java.io.PrintWriter: void print(boolean)> is called
+<java.io.PrintWriter: void println(boolean)> is called
+<java.io.PrintWriter: void print(java.lang.Object)> is called
+<u: void a(java.lang.String,java.io.FileDescriptor,java.io.PrintWriter,java.lang.String[])> is called
+<bl: int b()> is called
+<bl: void d()> is called
+<bl: java.lang.Object b(int)> is called
+<bl: int a(int)> is called
+<u$a: java.lang.String toString()> is called
+<u$a: void a(java.lang.String,java.io.FileDescriptor,java.io.PrintWriter,java.lang.String[])> is called
+<i: java.lang.String toString()> is called
+<bg: void a(java.lang.Object,java.lang.StringBuilder)> is called
+<java.lang.Object: java.lang.Class getClass()> is called
+<java.lang.Class: java.lang.String getSimpleName()> is called
+<java.lang.Class: java.lang.String getName()> is called
+<java.lang.String: int lastIndexOf(int)> is called
+<java.lang.StringBuilder: java.lang.StringBuilder append(char)> is called
+<e: java.lang.String toString()> is called
+<e: void a(java.lang.String,java.io.FileDescriptor,java.io.PrintWriter,java.lang.String[])> is called
+<java.util.ArrayList: java.lang.Object[] toArray()> is called
+<java.util.Arrays: java.lang.String toString(java.lang.Object[])> is called
+<java.util.ArrayList: boolean contains(java.lang.Object)> is called
+<f: e a(o)> is called
+<e: void a(java.lang.String,java.io.PrintWriter,boolean)> is called
+<o: void a(int,e)> is called
+<java.util.ArrayList: java.lang.Object set(int,java.lang.Object)> is called
+<l: void f()> is called
+<o: void i()> is called
+<o: void a(int,boolean)> is called
+<o: void a(int,int,int,boolean)> is called
+<o: void a(i,int,int,int,boolean)> is called
+<o: i a(android.os.Bundle,java.lang.String)> is called
+<android.os.Bundle: int getInt(java.lang.String,int)> is called
+<android.os.Bundle: boolean getBoolean(java.lang.String,boolean)> is called
+<i: void a(android.content.Context)> is called
+<i: void a(android.app.Activity)> is called
+<m: android.app.Activity f()> is called
+<z: void <init>(java.lang.String)> is called
+<android.util.AndroidRuntimeException: void <init>(java.lang.String)> is called
+<m: o i()> is called
+<m: void b(i)> is called
+<i: void g(android.os.Bundle)> is called
+<o: void h()> is called
+<i: void c(android.os.Bundle)> is called
+<i: void y()> is called
+<o: void <init>()> is called
+<n: void <init>()> is called
+<o$1: void <init>(o)> is called
+<i$1: void <init>(i)> is called
+<k: void <init>()> is called
+<i: android.view.LayoutInflater b(android.os.Bundle)> is called
+<m: android.view.LayoutInflater b()> is called
+<i: n d()> is called
+<o: void l()> is called
+<o: void k()> is called
+<o: void j()> is called
+<o: bw s()> is called
+<bs: void a(android.view.LayoutInflater,bw)> is called
+<bs$a: void a(android.view.LayoutInflater,bw)> is called
+<i: android.view.View b(android.view.LayoutInflater,android.view.ViewGroup,android.os.Bundle)> is called
+<i: android.view.View a(android.view.LayoutInflater,android.view.ViewGroup,android.os.Bundle)> is called
+<cp: void a(android.view.View,boolean)> is called
+<cp$m: void a(android.view.View,boolean)> is called
+<android.view.View: void setVisibility(int)> is called
+<i: void a(android.view.View,android.os.Bundle)> is called
+<k: android.view.View a(int)> is called
+<i: android.content.res.Resources c()> is called
+<android.content.Context: android.content.res.Resources getResources()> is called
+<android.content.res.Resources: java.lang.String getResourceName(int)> is called
+<o: android.view.animation.Animation a(i,int,boolean,int)> is called
+<i: android.view.animation.Animation a(int,boolean,int)> is called
+<android.view.animation.AnimationUtils: android.view.animation.Animation loadAnimation(android.content.Context,int)> is called
+<o: int b(int,boolean)> is called
+<m: boolean d()> is called
+<m: int e()> is called
+<o: android.view.animation.Animation a(android.content.Context,float,float,float,float)> is called
+<android.view.animation.AnimationSet: void <init>(boolean)> is called
+<android.view.animation.ScaleAnimation: void <init>(float,float,float,float,int,float,int,float)> is called
+<android.view.animation.ScaleAnimation: void setInterpolator(android.view.animation.Interpolator)> is called
+<android.view.animation.ScaleAnimation: void setDuration(long)> is called
+<android.view.animation.AnimationSet: void addAnimation(android.view.animation.Animation)> is called
+<android.view.animation.AlphaAnimation: void <init>(float,float)> is called
+<android.view.animation.AlphaAnimation: void setInterpolator(android.view.animation.Interpolator)> is called
+<android.view.animation.AlphaAnimation: void setDuration(long)> is called
+<o: android.view.animation.Animation a(android.content.Context,float,float)> is called
+<o: void b(android.view.View,android.view.animation.Animation)> is called
+<o: boolean a(android.view.View,android.view.animation.Animation)> is called
+<cp: int c(android.view.View)> is called
+<cp$m: int c(android.view.View)> is called
+<cp: boolean l(android.view.View)> is called
+<cp$m: boolean f(android.view.View)> is called
+<o: boolean a(android.view.animation.Animation)> is called
+<android.view.animation.AnimationSet: java.util.List getAnimations()> is called
+<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)> is called
+<java.lang.reflect.Field: void setAccessible(boolean)> is called
+<java.lang.reflect.Field: java.lang.Object get(java.lang.Object)> is called
+<o$a: void <init>(android.view.View,android.view.animation.Animation,android.view.animation.Animation$AnimationListener)> is called
+<android.view.animation.Animation: void setAnimationListener(android.view.animation.Animation$AnimationListener)> is called
+<android.view.View: void startAnimation(android.view.animation.Animation)> is called
+<android.view.ViewGroup: void addView(android.view.View)> is called
+<i: void h(android.os.Bundle)> is called
+<i: void d(android.os.Bundle)> is called
+<i: void a(android.os.Bundle)> is called
+<android.view.View: void restoreHierarchyState(android.util.SparseArray)> is called
+<i: void e(android.os.Bundle)> is called
+<i: void z()> is called
+<o: boolean d()> is called
+<android.os.Looper: android.os.Looper myLooper()> is called
+<m: android.os.Handler h()> is called
+<android.os.Handler: android.os.Looper getLooper()> is called
+<u: boolean a()> is called
+<java.util.ArrayList: java.lang.Object[] toArray(java.lang.Object[])> is called
+<android.os.Handler: void removeCallbacks(java.lang.Runnable)> is called
+<java.lang.Runnable: void run()> is called
+<o: void c()> is called
+<o: void a(i)> is called
+<i: void h()> is called
+<m: u a(java.lang.String,boolean,boolean)> is called
+<bk: void <init>()> is called
+<bk: java.lang.Object get(java.lang.Object)> is called
+<bk: int a(java.lang.Object)> is called
+<bk: int a()> is called
+<bf: int a(int[],int,int)> is called
+<java.lang.Object: int hashCode()> is called
+<bk: int a(java.lang.Object,int)> is called
+<java.lang.Object: boolean equals(java.lang.Object)> is called
+<u: void <init>(java.lang.String,m,boolean)> is called
+<t: void <init>()> is called
+<bl: void <init>()> is called
+<bl: void <init>(int)> is called
+<bf: int a(int)> is called
+<bf: int b(int)> is called
+<bk: java.lang.Object put(java.lang.Object,java.lang.Object)> is called
+<bk: void e(int)> is called
+<java.lang.System: void arraycopy(java.lang.Object,int,java.lang.Object,int,int)> is called
+<bk: void a(int[],java.lang.Object[],int)> is called
+<u: void a(m)> is called
+<u: void b()> is called
+<java.lang.Throwable: java.lang.Throwable fillInStackTrace()> is called
+<android.util.Log: int w(java.lang.String,java.lang.String,java.lang.Throwable)> is called
+<u$a: void a()> is called
+<u: void g()> is called
+<u$a: void d()> is called
+<i: void A()> is called
+<i: void i()> is called
+<x: android.view.ViewGroup a(android.view.View)> is called
+<android.view.View: android.content.Context getContext()> is called
+<x: void <init>(android.content.Context)> is called
+<android.widget.FrameLayout: void <init>(android.content.Context)> is called
+<android.view.View: android.view.ViewGroup$LayoutParams getLayoutParams()> is called
+<android.widget.FrameLayout: void setLayoutParams(android.view.ViewGroup$LayoutParams)> is called
+<android.widget.FrameLayout$LayoutParams: void <init>(int,int)> is called
+<android.view.View: void setLayoutParams(android.view.ViewGroup$LayoutParams)> is called
+<android.widget.FrameLayout: void addView(android.view.View)> is called
+<android.view.View: void clearAnimation()> is called
+<i: void C()> is called
+<o: void m()> is called
+<i: void j()> is called
+<i: void D()> is called
+<o: void n()> is called
+<i: void k()> is called
+<i: void E()> is called
+<o: void o()> is called
+<m: boolean j()> is called
+<u: void d()> is called
+<u$a: void b()> is called
+<u: void c()> is called
+<u$a: void e()> is called
+<m: boolean a(i)> is called
+<o: void e(i)> is called
+<android.util.SparseArray: void <init>()> is called
+<android.view.View: void saveHierarchyState(android.util.SparseArray)> is called
+<android.util.SparseArray: int size()> is called
+<android.util.SparseArray: void clear()> is called
+<i: void F()> is called
+<o: void p()> is called
+<i: void l()> is called
+<u: void f()> is called
+<o$2: void <init>(o,android.view.View,android.view.animation.Animation,i)> is called
+<o$a: void <init>(android.view.View,android.view.animation.Animation)> is called
+<android.view.ViewGroup: void removeView(android.view.View)> is called
+<i: void G()> is called
+<o: void q()> is called
+<i: void m()> is called
+<u: void h()> is called
+<u$a: void f()> is called
+<bl: void c()> is called
+<i: void o()> is called
+<o: void d(i)> is called
+<m: void a(java.lang.String)> is called
+<bk: java.lang.Object remove(java.lang.Object)> is called
+<bk: java.lang.Object d(int)> is called
+<i: void n()> is called
+<m: void c()> is called
+<'if': void <init>()> is called
+<java.util.Arrays: void fill(char[],char)> is called
+<java.lang.String: void <init>(char[])> is called
+<java.lang.String: java.lang.String format(java.lang.String,java.lang.Object[])> is called
+<'if': void <clinit>()> is called
+<java.math.BigDecimal: void <init>(int)> is called
+<java.math.BigDecimal: int intValue()> is called
+<java.math.BigDecimal: java.math.BigDecimal pow(int)> is called
+<android.graphics.Typeface: android.graphics.Typeface createFromAsset(android.content.res.AssetManager,java.lang.String)> is called
+	Method onCreate, #IncomingEdges: 1, #OutgoingEdges: 72
+Class 2: com.sawicki.piotr.calculator.simple.simplecalculator.HelpActivity
+<ff: void a(boolean)> is called
+<ff: void a(int,int)> is called
+<hn: int o()> is called
+<hn: void c(int)> is called
+<ff: void b(boolean)> is called
+<fg: void a(boolean)> is called
+<fg: void a(int,int)> is called
+<fg: void b(boolean)> is called
+<ev: es f()> is called
+<ex: es a()> is called
+<android.view.ContextThemeWrapper: android.content.res.Resources getResources()> is called
+	Method onCreate, #IncomingEdges: 1, #OutgoingEdges: 12
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 8.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+See https://docs.gradle.org/7.4.2/userguide/command_line_interface.html#sec:command_line_warnings
+
+BUILD SUCCESSFUL in 3s
+2 actionable tasks: 1 executed, 1 up-to-date

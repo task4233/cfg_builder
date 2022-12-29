@@ -1,4 +1,8 @@
 {
+    "java.jdt.ls.java.home": "/usr/lib/jvm/java-17-openjdk-amd64",
+    "java.import.gradle.home": "/usr/lib/jvm/java-17-openjdk-amd64",
+    "java.import.gradle.java.home": "/usr/lib/jvm/java-17-openjdk-amd64",
+    "java.import.gradle.user.home": "/usr/lib/jvm/java-17-openjdk-amd64",
     "java.compile.nullAnalysis.mode": "automatic",
     "java.configuration.updateBuildConfiguration": "automatic"
 }

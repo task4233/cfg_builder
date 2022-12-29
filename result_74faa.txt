@@ -1,0 +1,386 @@
+./gradlew clean
+> Task :clean
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 8.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+See https://docs.gradle.org/7.4.2/userguide/command_line_interface.html#sec:command_line_warnings
+
+BUILD SUCCESSFUL in 391ms
+1 actionable task: 1 executed
+./gradlew build
+> Task :compileJava
+> Task :processResources NO-SOURCE
+> Task :classes
+> Task :jar
+> Task :startScripts
+> Task :distTar
+> Task :distZip
+> Task :assemble
+> Task :compileTestJava
+> Task :processTestResources NO-SOURCE
+> Task :testClasses
+> Task :test
+> Task :check
+> Task :build
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 8.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+See https://docs.gradle.org/7.4.2/userguide/command_line_interface.html#sec:command_line_warnings
+
+BUILD SUCCESSFUL in 1s
+7 actionable tasks: 7 executed
+./gradlew run --args="cfg"
+> Task :compileJava UP-TO-DATE
+> Task :processResources NO-SOURCE
+> Task :classes UP-TO-DATE
+
+> Task :run
+config done
+setup done
+construction done
+callgraph done
+Class 1: com.thecompletecalculator.cocal.CalculatorApplication
+<android.app.Application: void onCreate()> is called
+<java.util.Map: java.lang.Object get(java.lang.Object)> is called
+<java.lang.String: java.lang.String format(java.lang.String,java.lang.Object[])> is called
+<java.lang.RuntimeException: void <init>(java.lang.String)> is called
+<java.lang.Exception: void <init>()> is called
+<java.lang.Throwable: void <init>()> is called
+<java.lang.Object: void <init>()> is called
+<android.util.Log: int v(java.lang.String,java.lang.String)> is called
+<android.preference.PreferenceManager: void setDefaultValues(android.content.Context,int,boolean)> is called
+<android.support.v7.preference.PreferenceManager: android.content.SharedPreferences getDefaultSharedPreferences(android.content.Context)> is called
+<android.content.Context: android.content.res.Resources getResources()> is called
+<android.content.res.Resources: java.lang.String getString(int)> is called
+<android.content.SharedPreferences: java.lang.String getString(java.lang.String,java.lang.String)> is called
+<java.lang.String: boolean equals(java.lang.Object)> is called
+<java.lang.Integer: int parseInt(java.lang.String)> is called
+<android.content.SharedPreferences: boolean getBoolean(java.lang.String,boolean)> is called
+<android.content.Context: android.content.Context getApplicationContext()> is called
+<java.util.HashMap: void <init>()> is called
+<java.lang.Class: java.lang.String getSimpleName()> is called
+<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)> is called
+<java.util.ArrayList: void <init>()> is called
+<java.lang.Object: java.lang.Class getClass()> is called
+<java.lang.Object: java.lang.String toString()> is called
+<java.lang.String: int length()> is called
+<java.lang.String: java.lang.String substring(int)> is called
+<java.util.List: boolean add(java.lang.Object)> is called
+<java.util.HashSet: void <init>()> is called
+<java.util.Locale: java.util.Locale getDefault()> is called
+<java.util.Locale: void <init>(java.lang.String)> is called
+<java.util.Locale: void setDefault(java.util.Locale)> is called
+<android.content.res.Resources: android.content.res.Configuration getConfiguration()> is called
+<android.content.res.Configuration: void setLocale(java.util.Locale)> is called
+<android.content.res.Configuration: void setLayoutDirection(java.util.Locale)> is called
+<android.content.Context: android.content.Context createConfigurationContext(android.content.res.Configuration)> is called
+<android.content.res.Resources: android.util.DisplayMetrics getDisplayMetrics()> is called
+<android.content.res.Resources: void updateConfiguration(android.content.res.Configuration,android.util.DisplayMetrics)> is called
+	Method onCreate, #IncomingEdges: 1, #OutgoingEdges: 3
+Class 2: com.thecompletecalculator.cocal.activities.AboutUsActivity
+<java.lang.Class: boolean desiredAssertionStatus()> is called
+<android.support.v7.app.AppCompatActivity: android.support.v7.app.ActionBar getSupportActionBar()> is called
+<android.support.v7.app.AppCompatActivity: void onCreate(android.os.Bundle)> is called
+<android.preference.PreferenceManager: android.content.SharedPreferences getDefaultSharedPreferences(android.content.Context)> is called
+<android.content.SharedPreferences: int getInt(java.lang.String,int)> is called
+<java.lang.Enum: int ordinal()> is called
+<android.support.v7.app.AppCompatActivity: void setTheme(int)> is called
+<android.support.v7.app.AppCompatActivity: android.content.res.Resources$Theme getTheme()> is called
+<android.support.v4.content.ContextCompat: int getColor(android.content.Context,int)> is called
+<android.util.TypedValue: void <init>()> is called
+<android.content.res.Resources$Theme: boolean resolveAttribute(int,android.util.TypedValue,boolean)> is called
+<android.support.v7.app.AppCompatActivity: void setContentView(int)> is called
+<android.support.v7.app.AppCompatActivity: android.view.View findViewById(int)> is called
+<android.support.v7.app.AppCompatActivity: void setSupportActionBar(android.support.v7.widget.Toolbar)> is called
+<android.support.v7.app.ActionBar: void setDisplayHomeAsUpEnabled(boolean)> is called
+<android.support.v7.app.ActionBar: android.content.Context getThemedContext()> is called
+<android.content.Context: android.content.res.Resources$Theme getTheme()> is called
+<android.support.v7.app.AppCompatActivity: void setRequestedOrientation(int)> is called
+<android.support.v7.app.AppCompatActivity: android.view.Window getWindow()> is called
+<android.view.Window: void addFlags(int)> is called
+<android.view.Window: void clearFlags(int)> is called
+<android.view.Window: void setStatusBarColor(int)> is called
+<android.view.Window: android.view.View getDecorView()> is called
+<android.view.View: int getSystemUiVisibility()> is called
+<android.view.View: void setSystemUiVisibility(int)> is called
+<java.lang.AssertionError: void <init>()> is called
+<java.lang.Error: void <init>()> is called
+<android.app.Activity: void <clinit>()> is called
+	Method onCreate, #IncomingEdges: 1, #OutgoingEdges: 6
+Class 3: com.thecompletecalculator.cocal.activities.ThemesActivity
+<android.support.v7.widget.GridLayoutManager: void <init>(android.content.Context,int)> is called
+<android.support.v7.widget.RecyclerView$Adapter: void <init>()> is called
+<java.lang.Object: java.lang.Object clone()> is called
+	Method onCreate, #IncomingEdges: 1, #OutgoingEdges: 16
+Class 4: com.thecompletecalculator.cocal.activities.Launcher
+<android.arch.lifecycle.ViewModelProviders: android.arch.lifecycle.ViewModelProvider of(android.support.v4.app.FragmentActivity)> is called
+	Method onCreate, #IncomingEdges: 1, #OutgoingEdges: 3
+Class 5: com.thecompletecalculator.cocal.activities.ShareActivity
+<java.lang.String: void <clinit>()> is called
+<android.support.v7.app.AppCompatActivity: android.content.res.Resources getResources()> is called
+<android.content.Context: java.lang.String getString(int)> is called
+<java.lang.Character: java.lang.String toString(char)> is called
+<java.util.Arrays: java.util.List asList(java.lang.Object[])> is called
+<java.util.List: boolean addAll(java.util.Collection)> is called
+<android.support.v4.util.SparseArrayCompat: void <init>()> is called
+<android.support.v4.util.SparseArrayCompat: void append(int,java.lang.Object)> is called
+<android.support.v4.util.SparseArrayCompat: java.lang.Object get(int)> is called
+<java.util.LinkedList: void <init>()> is called
+	Method onCreate, #IncomingEdges: 1, #OutgoingEdges: 18
+Class 6: com.thecompletecalculator.cocal.activities.MainActivity
+<java.util.Set: boolean add(java.lang.Object)> is called
+<android.widget.RelativeLayout: android.view.ViewTreeObserver getViewTreeObserver()> is called
+<android.view.ViewTreeObserver: void addOnGlobalLayoutListener(android.view.ViewTreeObserver$OnGlobalLayoutListener)> is called
+<android.support.v7.app.AppCompatActivity: android.support.v4.app.FragmentManager getSupportFragmentManager()> is called
+<java.lang.ref.WeakReference: java.lang.Object get()> is called
+<android.support.design.widget.FloatingActionButton: void setImageResource(int)> is called
+<android.content.res.ColorStateList: android.content.res.ColorStateList valueOf(int)> is called
+<android.support.design.widget.FloatingActionButton: void setBackgroundTintList(android.content.res.ColorStateList)> is called
+<android.app.Activity: android.view.LayoutInflater getLayoutInflater()> is called
+<android.view.LayoutInflater: android.view.View inflate(int,android.view.ViewGroup,boolean)> is called
+<android.view.View: android.view.View findViewById(int)> is called
+<android.view.ContextThemeWrapper: android.content.res.Resources getResources()> is called
+<android.content.res.Resources: int getDimensionPixelSize(int)> is called
+<android.content.res.Resources: int getIdentifier(java.lang.String,java.lang.String,java.lang.String)> is called
+<android.content.res.Resources$Theme: android.content.res.TypedArray obtainStyledAttributes(int[])> is called
+<android.content.res.TypedArray: int getDimensionPixelSize(int,int)> is called
+<android.content.res.TypedArray: void recycle()> is called
+<java.lang.Math: int min(int,int)> is called
+<android.view.View: int getPaddingLeft()> is called
+<android.view.View: int getPaddingTop()> is called
+<android.view.View: int getPaddingRight()> is called
+<android.view.View: int getPaddingBottom()> is called
+<android.view.View: void setPadding(int,int,int,int)> is called
+<android.view.View: android.view.ViewGroup$LayoutParams getLayoutParams()> is called
+<android.view.View: void setLayoutParams(android.view.ViewGroup$LayoutParams)> is called
+<java.lang.Enum: java.lang.String name()> is called
+<android.widget.ImageView: void setScaleType(android.widget.ImageView$ScaleType)> is called
+<android.support.v4.content.res.ResourcesCompat: int getColor(android.content.res.Resources,int,android.content.res.Resources$Theme)> is called
+<android.view.View: android.content.Context getContext()> is called
+<android.support.v7.content.res.AppCompatResources: android.graphics.drawable.Drawable getDrawable(android.content.Context,int)> is called
+<android.widget.FrameLayout: void setForeground(android.graphics.drawable.Drawable)> is called
+<android.view.View: void setOnClickListener(android.view.View$OnClickListener)> is called
+<android.view.View: void setTag(int,java.lang.Object)> is called
+<android.view.View: void setBackgroundResource(int)> is called
+<android.support.v4.view.ViewCompat: void setBackground(android.view.View,android.graphics.drawable.Drawable)> is called
+<android.graphics.drawable.Drawable: void <init>()> is called
+<android.text.TextPaint: void <init>(int)> is called
+<android.graphics.Paint: void setStyle(android.graphics.Paint$Style)> is called
+<android.graphics.Paint: void setTextAlign(android.graphics.Paint$Align)> is called
+<android.graphics.Paint: void setUnderlineText(boolean)> is called
+<android.graphics.Paint: void setAntiAlias(boolean)> is called
+<android.graphics.Paint: void <init>(int)> is called
+<android.graphics.Path: void <init>()> is called
+<android.graphics.RectF: void <init>()> is called
+<android.graphics.Rect: void <init>()> is called
+<android.graphics.Paint: android.graphics.Typeface setTypeface(android.graphics.Typeface)> is called
+<android.graphics.drawable.Drawable: void invalidateSelf()> is called
+<android.graphics.drawable.Drawable: void setBounds(int,int,int,int)> is called
+<android.graphics.drawable.Drawable: int[] getState()> is called
+<android.content.res.ColorStateList: int getDefaultColor()> is called
+<android.content.res.ColorStateList: int getColorForState(int[],int)> is called
+<android.graphics.Color: int red(int)> is called
+<android.graphics.Color: int green(int)> is called
+<android.graphics.Color: int blue(int)> is called
+<android.graphics.Color: int rgb(int,int,int)> is called
+<android.graphics.Paint: int getColor()> is called
+<android.graphics.Paint: void setColor(int)> is called
+<android.graphics.Color: int alpha(int)> is called
+<android.graphics.Paint: void setAlpha(int)> is called
+<android.widget.ImageView: void setImageDrawable(android.graphics.drawable.Drawable)> is called
+<android.widget.TextView: void setTypeface(android.graphics.Typeface)> is called
+<android.widget.TextView: void setTextColor(int)> is called
+<java.util.List: int size()> is called
+<java.util.List: java.lang.Object get(int)> is called
+<java.util.Stack: void <init>()> is called
+<java.util.Stack: java.lang.Object push(java.lang.Object)> is called
+<java.util.Stack: boolean isEmpty()> is called
+<java.util.Stack: java.lang.Object pop()> is called
+<java.util.Stack: boolean empty()> is called
+<android.widget.ImageView: void setVisibility(int)> is called
+<android.view.View: void setVisibility(int)> is called
+<android.widget.ImageView: void setOnClickListener(android.view.View$OnClickListener)> is called
+<android.widget.TextView: void setText(java.lang.CharSequence)> is called
+<android.widget.ImageView: android.content.Context getContext()> is called
+<android.widget.ImageView: void setOnLongClickListener(android.view.View$OnLongClickListener)> is called
+<android.widget.ImageView: void invalidate()> is called
+<android.widget.ImageView: void setTag(int,java.lang.Object)> is called
+<android.widget.TextView: void setVisibility(int)> is called
+<android.text.TextUtils: boolean isEmpty(java.lang.CharSequence)> is called
+<android.os.Bundle: int getInt(java.lang.String,int)> is called
+<java.util.ArrayList: void <init>(java.util.Collection)> is called
+<java.util.ArrayList: boolean contains(java.lang.Object)> is called
+<java.util.ArrayList: java.lang.Object get(int)> is called
+<java.util.ArrayList: java.lang.Object remove(int)> is called
+<java.util.ArrayList: void add(int,java.lang.Object)> is called
+<android.support.v7.widget.RecyclerView: int getPaddingLeft()> is called
+<android.support.v7.widget.RecyclerView: int getPaddingRight()> is called
+<android.support.v7.widget.RecyclerView: int getPaddingBottom()> is called
+<android.support.v7.widget.RecyclerView: void setPadding(int,int,int,int)> is called
+<java.lang.StringBuilder: void <init>()> is called
+<android.support.v7.app.AppCompatActivity: java.lang.String getString(int)> is called
+<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)> is called
+<java.lang.StringBuilder: java.lang.String toString()> is called
+<java.util.concurrent.atomic.AtomicLong: void <init>(long)> is called
+<java.lang.Integer: java.lang.Integer valueOf(int)> is called
+<android.widget.Filter: void <init>()> is called
+<android.util.SparseIntArray: void <init>()> is called
+<android.support.v7.widget.DefaultItemAnimator: void <init>()> is called
+<android.util.SparseArray: void <init>()> is called
+<android.support.v4.util.ArrayMap: void <init>()> is called
+<android.support.v7.widget.RecyclerView$Adapter: void setHasStableIds(boolean)> is called
+<java.util.ArrayList: boolean add(java.lang.Object)> is called
+<java.util.ArrayList: boolean addAll(java.util.Collection)> is called
+<java.util.ArrayList: int size()> is called
+<android.util.SparseArray: void clear()> is called
+<java.util.ArrayList: java.util.Iterator iterator()> is called
+<java.util.Iterator: boolean hasNext()> is called
+<java.util.Iterator: java.lang.Object next()> is called
+<android.util.SparseArray: void append(int,java.lang.Object)> is called
+<java.util.Collection: java.util.Iterator iterator()> is called
+<java.util.Map: boolean containsKey(java.lang.Object)> is called
+<java.lang.IllegalStateException: void <init>(java.lang.String)> is called
+<java.util.Map: java.lang.Object remove(java.lang.Object)> is called
+<android.app.Activity: android.view.View findViewById(int)> is called
+<android.support.v7.widget.LinearLayoutManager: void <init>(android.content.Context)> is called
+<android.view.ViewGroup: int getChildCount()> is called
+<android.view.ViewGroup: android.view.View getChildAt(int)> is called
+<android.view.View: int getId()> is called
+<android.view.ViewGroup: void removeView(android.view.View)> is called
+<android.view.ViewGroup: void removeAllViews()> is called
+<android.widget.FrameLayout$LayoutParams: void <init>(int,int)> is called
+<android.view.ViewGroup: void addView(android.view.View,android.view.ViewGroup$LayoutParams)> is called
+<android.view.ViewGroup$LayoutParams: void <init>(int,int)> is called
+<android.view.ViewGroup: void setId(int)> is called
+<android.app.Activity: android.view.Window getWindow()> is called
+<android.view.Window: android.view.WindowManager$LayoutParams getAttributes()> is called
+<android.view.Window: void setAttributes(android.view.WindowManager$LayoutParams)> is called
+<android.view.Window: void setNavigationBarColor(int)> is called
+<android.view.ViewGroup: void setPadding(int,int,int,int)> is called
+<android.support.v7.app.ActionBarDrawerToggle: void <init>(android.app.Activity,android.support.v4.widget.DrawerLayout,android.support.v7.widget.Toolbar,int,int)> is called
+<android.support.v7.app.ActionBarDrawerToggle: void syncState()> is called
+<android.support.v7.widget.Toolbar: void setNavigationOnClickListener(android.view.View$OnClickListener)> is called
+<android.support.v7.app.ActionBarDrawerToggle: void setToolbarNavigationClickListener(android.view.View$OnClickListener)> is called
+<android.support.v4.widget.DrawerLayout: void addDrawerListener(android.support.v4.widget.DrawerLayout$DrawerListener)> is called
+<android.widget.RelativeLayout: void setBackgroundColor(int)> is called
+<android.widget.RelativeLayout: android.view.ViewGroup$LayoutParams getLayoutParams()> is called
+<java.lang.Integer: int intValue()> is called
+<android.support.v4.widget.DrawerLayout$LayoutParams: void setMarginEnd(int)> is called
+<android.widget.RelativeLayout: void setLayoutParams(android.view.ViewGroup$LayoutParams)> is called
+<android.widget.LinearLayout$LayoutParams: void <init>(int,int)> is called
+<android.widget.RelativeLayout: void addView(android.view.View,android.view.ViewGroup$LayoutParams)> is called
+<android.support.v4.view.ViewCompat: int getLayoutDirection(android.view.View)> is called
+<android.support.v4.widget.DrawerLayout: void setDrawerShadow(int,int)> is called
+<android.view.LayoutInflater: android.view.LayoutInflater 'from'(android.content.Context)> is called
+<android.support.v7.widget.RecyclerView: void setItemAnimator(android.support.v7.widget.RecyclerView$ItemAnimator)> is called
+<android.support.v7.widget.RecyclerView: void setFadingEdgeLength(int)> is called
+<android.support.v7.widget.RecyclerView: void setClipToPadding(boolean)> is called
+<android.support.v7.widget.RecyclerView: void setLayoutManager(android.support.v7.widget.RecyclerView$LayoutManager)> is called
+<java.lang.Boolean: boolean booleanValue()> is called
+<android.content.Context: java.lang.Object getSystemService(java.lang.String)> is called
+<android.util.DisplayMetrics: void <init>()> is called
+<android.view.WindowManager: android.view.Display getDefaultDisplay()> is called
+<android.view.Display: void getMetrics(android.util.DisplayMetrics)> is called
+<android.widget.RelativeLayout: android.view.View findViewById(int)> is called
+<android.view.View: void bringToFront()> is called
+<android.support.v4.content.ContextCompat: android.graphics.drawable.Drawable getDrawable(android.content.Context,int)> is called
+<android.widget.RelativeLayout$LayoutParams: void <init>(int,int)> is called
+<android.widget.RelativeLayout$LayoutParams: void addRule(int,int)> is called
+<android.view.View: void setId(int)> is called
+<android.widget.RelativeLayout: void addView(android.view.View,int,android.view.ViewGroup$LayoutParams)> is called
+<android.support.v7.widget.RecyclerView: android.view.ViewGroup$LayoutParams getLayoutParams()> is called
+<android.support.v7.widget.RecyclerView: void setLayoutParams(android.view.ViewGroup$LayoutParams)> is called
+<android.view.View: void setBackgroundColor(int)> is called
+<android.view.View: void setElevation(float)> is called
+<android.view.View: void <init>(android.content.Context)> is called
+<android.widget.RelativeLayout: void addView(android.view.View,int,int)> is called
+<android.widget.RelativeLayout: android.content.Context getContext()> is called
+<android.widget.LinearLayout: void <init>(android.content.Context)> is called
+<android.widget.LinearLayout: void setLayoutParams(android.view.ViewGroup$LayoutParams)> is called
+<android.widget.LinearLayout: void setOrientation(int)> is called
+<android.widget.LinearLayout: void setBackgroundColor(int)> is called
+<android.widget.LinearLayout: void setMinimumHeight(int)> is called
+<java.util.List: java.util.Iterator iterator()> is called
+<android.view.ViewGroup: android.content.Context getContext()> is called
+<android.view.View: void setTag(java.lang.Object)> is called
+<android.view.ViewGroup: void addView(android.view.View)> is called
+<android.support.v7.widget.RecyclerView: int getPaddingTop()> is called
+<android.support.v7.widget.RecyclerView: void setAdapter(android.support.v7.widget.RecyclerView$Adapter)> is called
+<android.util.SparseArray: int indexOfKey(int)> is called
+<android.util.SparseArray: java.lang.Object valueAt(int)> is called
+<android.util.SparseArray: int keyAt(int)> is called
+<java.lang.Boolean: java.lang.Boolean valueOf(boolean)> is called
+<android.support.v7.widget.RecyclerView$Adapter: void notifyDataSetChanged()> is called
+<android.support.v7.widget.RecyclerView$Adapter: void notifyItemChanged(int)> is called
+<android.support.v7.widget.RecyclerView: void scrollToPosition(int)> is called
+<java.util.Map: java.util.Collection values()> is called
+<android.widget.LinearLayout: int getChildCount()> is called
+<android.widget.LinearLayout: android.view.View getChildAt(int)> is called
+<android.view.View: java.lang.Object getTag()> is called
+<android.view.View: void setActivated(boolean)> is called
+<android.view.View: void setSelected(boolean)> is called
+<android.os.Handler: void <init>()> is called
+<android.os.Handler: boolean postDelayed(java.lang.Runnable,long)> is called
+<java.lang.Runnable: void run()> is called
+<android.support.v4.widget.DrawerLayout: void closeDrawers()> is called
+<android.support.v4.util.ArraySet: void <init>()> is called
+<java.util.Set: int size()> is called
+<java.util.Set: java.util.Iterator iterator()> is called
+<android.os.Bundle: boolean getBoolean(java.lang.String,boolean)> is called
+<android.support.v7.widget.RecyclerView: void smoothScrollToPosition(int)> is called
+<android.widget.ImageView: void clearAnimation()> is called
+<android.support.v4.view.ViewCompat: android.support.v4.view.ViewPropertyAnimatorCompat animate(android.view.View)> is called
+<android.support.v4.view.ViewPropertyAnimatorCompat: android.support.v4.view.ViewPropertyAnimatorCompat rotation(float)> is called
+<android.support.v4.view.ViewPropertyAnimatorCompat: void start()> is called
+<android.os.Bundle: void <init>()> is called
+<android.support.v4.widget.DrawerLayout: void openDrawer(android.view.View)> is called
+<android.content.SharedPreferences: android.content.SharedPreferences$Editor edit()> is called
+<android.content.SharedPreferences$Editor: android.content.SharedPreferences$Editor putBoolean(java.lang.String,boolean)> is called
+<android.content.SharedPreferences$Editor: void apply()> is called
+<android.support.v4.widget.DrawerLayout$SimpleDrawerListener: void <init>()> is called
+<android.widget.RelativeLayout: void setId(int)> is called
+<android.support.v4.widget.DrawerLayout: void addView(android.view.View,int)> is called
+<android.support.v4.app.FragmentPagerAdapter: void <init>(android.support.v4.app.FragmentManager)> is called
+<java.lang.ref.WeakReference: void <init>(java.lang.Object)> is called
+<android.util.SparseArray: void put(int,java.lang.Object)> is called
+<android.support.v4.view.ViewPager: void setAdapter(android.support.v4.view.PagerAdapter)> is called
+<android.support.v4.view.ViewPager: void setOffscreenPageLimit(int)> is called
+<android.support.v4.view.ViewPager: void setCurrentItem(int)> is called
+<android.support.v7.app.AppCompatActivity: android.graphics.drawable.Drawable getDrawable(int)> is called
+<android.support.design.widget.TabLayout: void setupWithViewPager(android.support.v4.view.ViewPager)> is called
+<android.support.design.widget.TabLayout: android.support.design.widget.TabLayout$Tab getTabAt(int)> is called
+<android.support.design.widget.TabLayout$Tab: android.support.design.widget.TabLayout$Tab setIcon(android.graphics.drawable.Drawable)> is called
+<android.graphics.drawable.Drawable: void setTint(int)> is called
+<android.support.design.widget.TabLayout: void addOnTabSelectedListener(android.support.design.widget.TabLayout$BaseOnTabSelectedListener)> is called
+<android.support.design.widget.AppBarLayout: void addOnOffsetChangedListener(android.support.design.widget.AppBarLayout$OnOffsetChangedListener)> is called
+<android.support.design.widget.FloatingActionButton: void setOnClickListener(android.view.View$OnClickListener)> is called
+<android.support.v4.view.GestureDetectorCompat: void <init>(android.content.Context,android.view.GestureDetector$OnGestureListener)> is called
+<android.support.v4.app.Fragment: void <init>()> is called
+<android.support.v4.app.Fragment: void <clinit>()> is called
+	Method onCreate, #IncomingEdges: 1, #OutgoingEdges: 32
+Class 7: com.thecompletecalculator.cocal.activities.NameActivity
+<android.support.v7.app.AppCompatActivity: void setResult(int)> is called
+	Method onCreate, #IncomingEdges: 1, #OutgoingEdges: 7
+Class 8: com.thecompletecalculator.cocal.services.DbService
+Class 9: com.thecompletecalculator.cocal.services.ExpressionService
+Class 10: com.thecompletecalculator.cocal.utils.GenericFileProvider
+Class 11: com.thecompletecalculator.cocal.activities.SettingsActivity
+<android.support.v7.preference.PreferenceFragmentCompat: void <init>()> is called
+	Method onCreate, #IncomingEdges: 1, #OutgoingEdges: 10
+Class 12: com.thecompletecalculator.cocal.db.CalculatorProvider
+<android.content.ContentProvider: android.content.Context getContext()> is called
+<android.database.sqlite.SQLiteOpenHelper: void <init>(android.content.Context,java.lang.String,android.database.sqlite.SQLiteDatabase$CursorFactory,int)> is called
+	Method onCreate, #IncomingEdges: 1, #OutgoingEdges: 3
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 8.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+See https://docs.gradle.org/7.4.2/userguide/command_line_interface.html#sec:command_line_warnings
+
+BUILD SUCCESSFUL in 14s
+2 actionable tasks: 1 executed, 1 up-to-date
