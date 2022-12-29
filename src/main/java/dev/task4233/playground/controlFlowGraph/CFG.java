@@ -7,6 +7,7 @@ import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -15,6 +16,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import dev.task4233.playground.utils.AndroidCallGraphFilter;
 import dev.task4233.playground.utils.AndroidUtil;
+import fj.F;
 import soot.jimple.InvokeExpr;
 import soot.jimple.Stmt;
 import soot.jimple.infoflow.InfoflowConfiguration;
@@ -33,8 +35,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class CFG {
     private List<Map<String, Integer>> apiFreqs = new ArrayList<>();
     private List<List<String>> apiSequences = new ArrayList<>();
-    private List<String> allApis = null;
-
+    private List<List<Integer>> apiSequenceIndices = new ArrayList();
+    private Map<String, Integer> allApis = new LinkedHashMap<>();
 
     private String apkPath = System.getProperty("user.dir") + File.separator + "samples";
     private File[] apks = null;
@@ -45,6 +47,7 @@ public class CFG {
         for (int idx = 0; idx < apks.length; ++idx) {
             apiFreqs.add(new ConcurrentHashMap<String, Integer>());
             apiSequences.add(new ArrayList<>());
+            apiSequenceIndices.add(new ArrayList<>());
         }
     }
 
@@ -58,7 +61,7 @@ public class CFG {
                     return false;
                 }
                 // if (file.length() > apiSizeThreshold) {
-                //     return false;
+                // return false;
                 // }
 
                 return true;
@@ -80,16 +83,34 @@ public class CFG {
         });
 
         this.deriveAllApis();
+        this.convertSignatureToIndexInSequence();
         this.writeJSON();
+    }
+
+    public void convertSignatureToIndexInSequence() {
+        // signature -> index with allApis info
+        for (int idx=0; idx<apiSequences.size(); ++idx) {
+            List<String> apiSequence = apiSequences.get(idx);
+            List<Integer> apiSequenceIndex = new LinkedList<>();
+
+            for (int idxJ=0; idxJ<apiSequence.size(); ++idxJ) {
+                apiSequenceIndex.add(this.allApis.get(apiSequence.get(idxJ)));
+            }
+
+            this.apiSequenceIndices.set(idx, apiSequenceIndex);
+        }
     }
 
     // deriveAllApis derives all system-apis with gathering sum of sets
     private void deriveAllApis() {
         Set<String> allApiSet = new HashSet<>();
-        for (int idx=0; idx<apiFreqs.size(); ++idx) {
+        for (int idx = 0; idx < apiFreqs.size(); ++idx) {
             allApiSet.addAll(apiFreqs.get(idx).keySet());
         }
-        this.allApis = new ArrayList<>(allApiSet);
+        int idx = 0;
+        for (String api : allApiSet) {
+            this.allApis.put(api, idx++);
+        }
     }
 
     private void writeJSON() {
@@ -99,11 +120,13 @@ public class CFG {
             ObjectMapper objectMapper = new ObjectMapper();
 
             // write apiFreq
-            writeJSONWithFileName(objectMapper, "./output/apiFreq.json", apiFreqs);
+            writeJSONWithFileName(objectMapper, "./output/apiFrequencies.json", apiFreqs);
             // write allApiSets
             writeJSONWithFileName(objectMapper, "./output/allApis.json", allApis);
             // write apiSequences
-            writeJSONWithFileName(objectMapper, "./output/apiSequece.json", apiSequences);
+            writeJSONWithFileName(objectMapper, "./output/apiSequeces.json", apiSequences);
+            // write apiSequences coverted with index
+            writeJSONWithFileName(objectMapper, "./output/apiSequeceIndices.json", apiSequenceIndices);
         } catch (Exception e) {
             e.printStackTrace();
         }
