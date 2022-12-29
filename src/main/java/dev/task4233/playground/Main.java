@@ -8,6 +8,8 @@ public class Main {
             System.err.println("please add run option");
         }
 
+        System.setProperty("org.slf4j.simpleLogger.defaultLogLevel","ERROR");
+
         switch (args[0]) {
             case "cfg":
                 CFG cfg = new CFG();

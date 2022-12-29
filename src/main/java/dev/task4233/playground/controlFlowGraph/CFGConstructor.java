@@ -28,7 +28,7 @@ import soot.jimple.toolkits.callgraph.Edge;
 
 public class CFGConstructor implements Callable<ReturnedValue> {
     // private final static long apiSizeThreshold = 10101010;
-    private final static int randomWalkThreshold = 101010;
+    private final static int randomWalkThreshold = 10101;
 
     private final static String USER_HOME = System.getProperty("user.home");
     private final static String androidJar = System.getenv().containsKey("ANDROID_HOME")

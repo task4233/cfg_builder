@@ -3,7 +3,6 @@ apply plugin: 'java'
 
 // Apply the application plugin to add support for building an application
 apply plugin: 'application'
-
 applicationDefaultJvmArgs = ['-Xss80m']
 
 // In this section you declare where to find the dependencies of your project
@@ -26,7 +25,9 @@ dependencies {
 
     // https://mvnrepository.com/artifact/org.soot-oss/soot
     implementation 'org.soot-oss:soot:4.2.1'
-    implementation 'org.slf4j:slf4j-log4j12:2.0.6'
+    // https://mvnrepository.com/artifact/org.slf4j/slf4j-simple
+    implementation 'org.slf4j:slf4j-simple:2.0.6'
+
 
     // https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.3.4'
