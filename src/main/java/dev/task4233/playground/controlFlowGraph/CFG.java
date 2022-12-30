@@ -33,6 +33,13 @@ import soot.Unit;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class CFG {
+    // output file names
+    private final static String outputDirPath = "output" + File.separator;
+    public final static String allApisFilePath = outputDirPath  + "allApis.json";
+    public final static String apiFrequenciesFilePath = outputDirPath + "apiFrequencies.json";
+    public final static String apiSequenceIndicesFilePath = outputDirPath + "apiSequenceIndices.json";
+    public final static String apiSequencesFilePath = outputDirPath + "apiSequences.json";
+
     private List<Map<String, Integer>> apiFreqs = new ArrayList<>();
     private List<List<String>> apiSequences = new ArrayList<>();
     private List<List<Integer>> apiSequenceIndices = new ArrayList();
@@ -120,13 +127,13 @@ public class CFG {
             ObjectMapper objectMapper = new ObjectMapper();
 
             // write apiFreq
-            writeJSONWithFileName(objectMapper, "./output/apiFrequencies.json", apiFreqs);
+            writeJSONWithFileName(objectMapper, apiFrequenciesFilePath, apiFreqs);
             // write allApiSets
-            writeJSONWithFileName(objectMapper, "./output/allApis.json", allApis);
+            writeJSONWithFileName(objectMapper, allApisFilePath, allApis);
             // write apiSequences
-            writeJSONWithFileName(objectMapper, "./output/apiSequeces.json", apiSequences);
+            writeJSONWithFileName(objectMapper, apiSequencesFilePath, apiSequences);
             // write apiSequences coverted with index
-            writeJSONWithFileName(objectMapper, "./output/apiSequeceIndices.json", apiSequenceIndices);
+            writeJSONWithFileName(objectMapper, apiSequenceIndicesFilePath, apiSequenceIndices);
         } catch (Exception e) {
             e.printStackTrace();
         }

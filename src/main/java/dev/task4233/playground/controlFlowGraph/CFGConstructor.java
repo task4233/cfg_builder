@@ -13,16 +13,13 @@ import java.util.concurrent.ConcurrentHashMap;
 import com.google.common.collect.Iterators;
 
 import dev.task4233.playground.utils.AndroidUtil;
-import soot.Body;
 import soot.Scene;
 import soot.SootClass;
 import soot.SootMethod;
-import soot.Unit;
-import soot.jimple.InvokeExpr;
-import soot.jimple.Stmt;
 import soot.jimple.infoflow.InfoflowConfiguration.CallgraphAlgorithm;
 import soot.jimple.infoflow.android.InfoflowAndroidConfiguration;
 import soot.jimple.infoflow.android.SetupApplication;
+import soot.jimple.infoflow.collect.ConcurrentHashSet;
 import soot.jimple.toolkits.callgraph.CallGraph;
 import soot.jimple.toolkits.callgraph.Edge;
 
@@ -34,17 +31,16 @@ public class CFGConstructor implements Callable<ReturnedValue> {
     private final static String androidJar = System.getenv().containsKey("ANDROID_HOME")
             ? System.getenv("ANDROID_HOME") + File.separator + "platforms"
             : USER_HOME + "/Library/Android/sdk/platforms";
-    private final String entrypointMethod = "onCreate";
     private int idx = 0;
     private File apk = null;
     private Map<String, Integer> apiFreq = new ConcurrentHashMap<>();
 
     private SetupApplication app = null;
     private CallGraph callGraph = null;
-    private Set<SootClass> entrypointSet = null;
     private CallgraphAlgorithm cgAlgorithm = CallgraphAlgorithm.SPARK;
     private Random rnd = new Random();
     private List<String> apiSequence = new LinkedList<>();
+    private Set<String> randomWalkCache = new ConcurrentHashSet<>();
 
     public CFGConstructor(int idx, File apk) {
         this.idx = idx;
@@ -57,6 +53,7 @@ public class CFGConstructor implements Callable<ReturnedValue> {
         this.constructCFG();
         this.justifyCFG();
         this.genApiSequence();
+        System.out.println("---");
 
         return new ReturnedValue(this.idx, this.apiFreq, this.apiSequence);
     }
@@ -66,54 +63,63 @@ public class CFGConstructor implements Callable<ReturnedValue> {
         System.out.printf("start constructCFG for %s\n", this.apk.getName());
         long startTime = System.currentTimeMillis();
 
+        this.traverseMethod(app.getDummyMainMethod());
+
         // ready callgraph
-        Set<SootClass> entrypointSet = app.getEntrypointClasses();
+        // Set<SootClass> entrypointSet = app.getEntrypointClasses();
         // System.out.printf("callgraph done for %s\n", this.apk.getName());
 
         // dig callgraph
-        for (SootClass sootClass : entrypointSet) {
-            // System.out.println(String.format("Class %d: %s", ++classIdx,
-            // sootClass.getName()));
+        // for (SootClass sootClass : entrypointSet) {
+        // // System.out.println(String.format("Class %d: %s", ++classIdx,
+        // // sootClass.getName()));
 
-            for (SootMethod sootMethod : sootClass.getMethods()) {
-                // skip methods except entrypointMethod
-                if (!sootMethod.getName().equals(entrypointMethod)) {
-                    continue;
-                }
+        // for (SootMethod sootMethod : sootClass.getMethods()) {
+        // // skip methods except entrypointMethod
+        // if (!sootMethod.getName().equals(entrypointMethod)) {
+        // continue;
+        // }
+        // System.out.printf("constructCFG entrypoint: %s\n",
+        // sootMethod.getSignature());
+        // this.traverseMethod(sootMethod);
 
-                int incomingEdge = 0;
-                for (Iterator<Edge> it = callGraph.edgesInto(sootMethod); it.hasNext(); it.next()) {
-                    ++incomingEdge;
-                }
-                int outgoingEdge = 0;
-                for (Iterator<Edge> it = callGraph.edgesOutOf(sootMethod); it.hasNext();) {
-                    Edge edge = it.next();
-                    this.traverseMethod(edge.tgt());
-                    ++outgoingEdge;
-                }
+        // // int incomingEdge = 0;
+        // // for (Iterator<Edge> it = callGraph.edgesInto(sootMethod); it.hasNext();
+        // it.next()) {
+        // // ++incomingEdge;
+        // // }
+        // // int outgoingEdge = 0;
+        // // for (Iterator<Edge> it = callGraph.edgesOutOf(sootMethod); it.hasNext();)
+        // {
+        // // Edge edge = it.next();
+        // // this.traverseMethod(edge.tgt());
+        // // ++outgoingEdge;
+        // // }
 
-                // System.out.println(String.format("\tMethod %s, #IncomingEdges: %d,
-                // #OutgoingEdges: %d",
-                // sootMethod.getName(), incomingEdge, outgoingEdge));
-            }
-        }
+        // // System.out.println(String.format("\tMethod %s, #IncomingEdges: %d,
+        // // #OutgoingEdges: %d",
+        // // sootMethod.getName(), incomingEdge, outgoingEdge));
+        // }
+        // }
 
         long endTime = System.currentTimeMillis();
-        System.out.printf("done constructCFG in %d[ms]\n\n", endTime - startTime);
+        System.out.printf("done constructCFG in %d[ms]\n", endTime - startTime);
     }
 
     private void genApiSequence() {
         System.out.printf("start getApiSequence for %s\n", this.apk.getName());
         long startTime = System.currentTimeMillis();
 
-        for (SootClass sootClass : entrypointSet) {
-            for (SootMethod sootMethod : sootClass.getMethods()) {
-                if (!sootMethod.getName().equals(entrypointMethod)) {
-                    continue;
-                }
-                this.randomWalk(sootMethod, 0);
-            }
-        }
+        // for (SootClass sootClass : entrypointSet) {
+        // for (SootMethod sootMethod : sootClass.getMethods()) {
+        // if (!sootMethod.getName().equals(entrypointMethod)) {
+        // continue;
+        // }
+        // System.out.printf("randomwalk entrypoint: %s\n", app.getDummyMainMethod().getSignature());
+        this.randomWalk(app.getDummyMainMethod(), 0);
+        // this.randomWalk(sootMethod, 0);
+        // }
+        // }
 
         long endTime = System.currentTimeMillis();
         System.out.printf("done getApiSequence in %d[ms]\n\n", endTime - startTime);
@@ -130,7 +136,6 @@ public class CFGConstructor implements Callable<ReturnedValue> {
         this.app = new SetupApplication(config);
         this.app.constructCallgraph(); // heavy
         this.callGraph = Scene.v().getCallGraph();
-        this.entrypointSet = this.app.getEntrypointClasses();
 
         System.out.printf("done init for %s\n", this.apk.getName());
     }
@@ -153,15 +158,20 @@ public class CFGConstructor implements Callable<ReturnedValue> {
         if (count >= randomWalkThreshold) {
             return;
         }
+        // System.out.printf("now: %s\n", now.getSignature());
 
-        // boolean isUserDefinedAPI = now.getSignature().startsWith("<com");
-        this.apiSequence.add(now.getSignature());
+        boolean isUserDefinedAPI = now.getSignature().startsWith("<com");
+        this.randomWalkCache.add(now.getSignature());
+        if (!isUserDefinedAPI) {
+            this.apiSequence.add(now.getSignature());
+        }
 
         Iterator<Edge> inIt = callGraph.edgesInto(now);
         Iterator<Edge> outIt = callGraph.edgesOutOf(now);
         int inSize = Iterators.size(inIt);
         int outSize = Iterators.size(outIt);
-        // System.out.printf("[%d] %s, in: %d, out: %d\n", count, now.getSignature(), inSize, outSize);
+        // System.out.printf("[%d] %s, in: %d, out: %d\n", count, now.getSignature(),
+        // inSize, outSize);
 
         inIt = callGraph.edgesInto(now);
         outIt = callGraph.edgesOutOf(now);
@@ -172,23 +182,33 @@ public class CFGConstructor implements Callable<ReturnedValue> {
 
         // 0->backward, 1->forward
         int choice = this.rnd.nextInt(2);
-        if (!inIt.hasNext()) {
+        if (!inIt.hasNext() || now.getName().equals(app.getDummyMainMethod().getName())) {
             choice = 1;
         }
         if (!outIt.hasNext()) {
             choice = 0;
+            boolean canBackward = false;
+            for (inIt = callGraph.edgesInto(now); inIt.hasNext();) {
+                Edge e = inIt.next();
+                canBackward |= randomWalkCache.contains(e.src().getSignature());
+                // System.out.printf("[<-|] src: %s, tgt: %s\n", e.src().getSignature(), e.tgt().getSignature());
+            }
+            if (!canBackward) {
+                System.out.println("failed backward");
+                return;
+            }
         }
 
         // omit because it might be same as callGraph.edgesOutOf(now)
         // if (now.hasActiveBody()) {
-        //     Body body = now.getActiveBody();
-        //     for (Unit u : body.getUnits()) {
-        //         Stmt stmt = (Stmt) u;
-        //         if (stmt.containsInvokeExpr()) {
-        //             InvokeExpr expr = stmt.getInvokeExpr();
-        //             System.out.println(String.format("\t\texpr = %s", expr.toString()));
-        //         }
-        //     }
+        // Body body = now.getActiveBody();
+        // for (Unit u : body.getUnits()) {
+        // Stmt stmt = (Stmt) u;
+        // if (stmt.containsInvokeExpr()) {
+        // InvokeExpr expr = stmt.getInvokeExpr();
+        // System.out.println(String.format("\t\texpr = %s", expr.toString()));
+        // }
+        // }
         // }
 
         int nextIdx;
@@ -198,27 +218,29 @@ public class CFGConstructor implements Callable<ReturnedValue> {
                 // backward
                 do {
                     nextIdx = this.rnd.nextInt(inSize);
-                    // System.out.printf("[0] %s, next: %d, size: %d\n", now.getSignature(), nextIdx, inSize);
+                    // System.out.printf("[0] %s, next: %d, size: %d\n", now.getSignature(),
+                    //    nextIdx, inSize);
                     inIt = callGraph.edgesInto(now);
-                    if (nextIdx > 0) {
-                        next = Iterators.get(inIt, nextIdx);
+                    for (int idx=0; idx<nextIdx+1; ++idx) {
+                        next = inIt.next();
                     }
-                    next = inIt.next();
-                } while(next == null || next.src() == null);
-                randomWalk(next.src(), count + 1);
+                } while (next == null || next.src() == null || !randomWalkCache.contains(next.src().getSignature()));
+                // System.out.printf("[<- ] src: %s, tgt: %s\n", next.src().getSignature(), next.tgt().getSignature());
+                randomWalk(next.src(), count + (isUserDefinedAPI ? 0 : 1));
                 return;
             case 1:
                 // forward
                 do {
                     nextIdx = this.rnd.nextInt(outSize);
-                    // System.out.printf("[1] %s, next: %d, size: %d\n", now.getSignature(), nextIdx, outSize);
+                    // System.out.printf("[1] %s, next: %d, size: %d\n", now.getSignature(),
+                    // nextIdx, outSize);
                     outIt = callGraph.edgesOutOf(now);
-                    if (nextIdx > 0) {
-                        next = Iterators.get(outIt, nextIdx);
+                    for (int idx=0; idx<nextIdx+1; ++idx) {
+                        next = outIt.next();
                     }
-                    next = outIt.next();
                 } while (next == null || next.tgt() == null);
-                randomWalk(next.tgt(), count + 1);
+                // System.out.printf("[-> ] src: %s, tgt: %s\n", next.src().getSignature(), next.tgt().getSignature());
+                randomWalk(next.tgt(), count + (isUserDefinedAPI ? 0 : 1));
                 return;
             default:
                 System.out.println("invalid choice");
@@ -246,22 +268,23 @@ public class CFGConstructor implements Callable<ReturnedValue> {
         // }
 
         // check method content
-        for (Iterator<Edge> it = callGraph.edgesOutOf(now); it.hasNext(); it.hasNext()) {
+        for (Iterator<Edge> it = callGraph.edgesOutOf(now); it.hasNext();) {
             Edge next = it.next();
-            if (next.tgt() == null) continue;
+            if (next.tgt() == null)
+                continue;
             traverseMethod(next.tgt());
         }
 
         // if (!now.hasActiveBody())
-        //     return null;
+        // return null;
         // Body body = now.getActiveBody();
         // for (Unit u : body.getUnits()) {
-        //     Stmt stmt = (Stmt) u;
-        //     if (stmt.containsInvokeExpr()) {
-        //         InvokeExpr expr = stmt.getInvokeExpr();
-        //         // System.out.println(String.format("\t\texpr = %s", expr.toString()));
-        //         traverseMethod(expr.getMethod());
-        //     }
+        // Stmt stmt = (Stmt) u;
+        // if (stmt.containsInvokeExpr()) {
+        // InvokeExpr expr = stmt.getInvokeExpr();
+        // // System.out.println(String.format("\t\texpr = %s", expr.toString()));
+        // traverseMethod(expr.getMethod());
+        // }
         // }
         return null;
     }
