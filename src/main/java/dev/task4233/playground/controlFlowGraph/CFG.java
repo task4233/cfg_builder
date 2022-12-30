@@ -14,8 +14,6 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
-import dev.task4233.playground.utils.AndroidCallGraphFilter;
-import dev.task4233.playground.utils.AndroidUtil;
 import fj.F;
 import soot.jimple.InvokeExpr;
 import soot.jimple.Stmt;

@@ -10,6 +10,8 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
+// ref: https://github.com/noidsirius/SootTutorial/blob/41827390ebaf285a719fedfdb960c5ebf98d2db8/src/main/java/dev/navids/soottutorial/android/AndroidUtil.java
+
 public class AndroidUtil {
 
     public static String getPackageName(String apkPath) {
