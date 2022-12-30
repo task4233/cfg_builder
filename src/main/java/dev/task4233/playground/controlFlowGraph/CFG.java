@@ -130,8 +130,11 @@ public class CFG {
             writeJSONWithFileName(objectMapper, apiFrequenciesFilePath, apiFreqs);
             // write allApiSets
             writeJSONWithFileName(objectMapper, allApisFilePath, allApis);
+
+            // NOTE: As this log file is easilly big, commented out
             // write apiSequences
-            writeJSONWithFileName(objectMapper, apiSequencesFilePath, apiSequences);
+            // writeJSONWithFileName(objectMapper, apiSequencesFilePath, apiSequences);
+            
             // write apiSequences coverted with index
             writeJSONWithFileName(objectMapper, apiSequenceIndicesFilePath, apiSequenceIndices);
         } catch (Exception e) {

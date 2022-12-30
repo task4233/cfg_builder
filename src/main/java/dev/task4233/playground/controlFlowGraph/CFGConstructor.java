@@ -14,7 +14,6 @@ import com.google.common.collect.Iterators;
 
 import dev.task4233.playground.utils.AndroidUtil;
 import soot.Scene;
-import soot.SootClass;
 import soot.SootMethod;
 import soot.jimple.infoflow.InfoflowConfiguration.CallgraphAlgorithm;
 import soot.jimple.infoflow.android.InfoflowAndroidConfiguration;
