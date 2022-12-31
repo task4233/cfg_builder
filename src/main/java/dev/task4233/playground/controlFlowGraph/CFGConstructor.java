@@ -32,8 +32,11 @@ public class CFGConstructor implements Callable<ReturnedValue> {
             : USER_HOME + "/Library/Android/sdk/platforms";
     private int idx = 0;
     private File apk = null;
-    private Map<String, Integer> apiFreq = new ConcurrentHashMap<>();
+    // family=> 0:benign, 1>=:malicious(might be expanded)
+    // TODO: use enum
+    private int family = 0;
 
+    private Map<String, Integer> apiFreq = new ConcurrentHashMap<>();
     private SetupApplication app = null;
     private CallGraph callGraph = null;
     private CallgraphAlgorithm cgAlgorithm = CallgraphAlgorithm.SPARK;
@@ -41,9 +44,10 @@ public class CFGConstructor implements Callable<ReturnedValue> {
     private List<String> apiSequence = new LinkedList<>();
     private Set<String> randomWalkCache = new ConcurrentHashSet<>();
 
-    public CFGConstructor(int idx, File apk) {
+    public CFGConstructor(int idx, File apk, int family) {
         this.idx = idx;
         this.apk = apk;
+        this.family = family;
     }
 
     @Override
@@ -54,7 +58,7 @@ public class CFGConstructor implements Callable<ReturnedValue> {
         this.genApiSequence();
         System.out.println("---");
 
-        return new ReturnedValue(this.idx, this.apiFreq, this.apiSequence);
+        return new ReturnedValue(this.idx, this.family, this.apiFreq, this.apiSequence);
     }
 
     // constructCFG constructs CallFlowGraph with given index

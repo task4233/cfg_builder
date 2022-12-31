@@ -33,7 +33,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class CFG {
     // output file names
     private final static String outputDirPath = "output" + File.separator;
-    public final static String allApisFilePath = outputDirPath  + "allApis.json";
+    public final static String allApisFilePath = outputDirPath + "allApis.json";
     public final static String apiFrequenciesFilePath = outputDirPath + "apiFrequencies.json";
     public final static String apiSequenceIndicesFilePath = outputDirPath + "apiSequenceIndices.json";
     public final static String apiSequencesFilePath = outputDirPath + "apiSequences.json";
@@ -44,12 +44,16 @@ public class CFG {
     private Map<String, Integer> allApis = new LinkedHashMap<>();
 
     private String apkPath = System.getProperty("user.dir") + File.separator + "samples";
-    private File[] apks = null;
+    // for identifying dataset family
+    private final static String familyKey = "a05cba79-d480-44ad-8a41-1447d544d1b";
+    private File[] benignApks = null;
+    private File[] maliciousApks = null;
 
     public CFG() {
         // collect apks
-        this.apks = this.collectApks(this.apkPath);
-        for (int idx = 0; idx < apks.length; ++idx) {
+        this.benignApks = this.collectApks(this.apkPath + File.separator + "benign");
+        this.maliciousApks = this.collectApks(this.apkPath + File.separator + "malicious");
+        for (int idx = 0; idx < benignApks.length + maliciousApks.length; ++idx) {
             apiFreqs.add(new ConcurrentHashMap<String, Integer>());
             apiSequences.add(new ArrayList<>());
             apiSequenceIndices.add(new ArrayList<>());
@@ -59,32 +63,42 @@ public class CFG {
     // collectApks collects <= 4MB .apk files
     private File[] collectApks(String apkDirPath) {
         File dir = new File(apkDirPath);
-        FilenameFilter filter = new FilenameFilter() {
-            public boolean accept(File file, String fileName) {
-                // ignore not endwith .apk and > 4MB
-                if (!fileName.endsWith(".apk")) {
-                    return false;
-                }
-                // if (file.length() > apiSizeThreshold) {
-                // return false;
-                // }
+        // unneeded because divided apks and others by changed directory structure
+        // FilenameFilter filter = new FilenameFilter() {
+        // public boolean accept(File file, String fileName) {
+        // // ignore not endwith .apk and > 4MB
+        // // if (!fileName.endsWith(".apk")) {
+        // // return false;
+        // // }
+        // // if (file.length() > apiSizeThreshold) {
+        // // return false;
+        // // }
 
-                return true;
-            }
-        };
-        return dir.listFiles(filter);
+        // return true;
+        // }
+        // };
+        // return dir.listFiles(filter);
+        return dir.listFiles();
     }
 
     // constructCFG constructs CallFlowGraph and write the result as JSON
     public void constructCFG() {
         List<CFGConstructor> jobs = new ArrayList<>();
-        for (int idx = 0; idx < apks.length; ++idx) {
-            jobs.add(new CFGConstructor(idx, apks[idx]));
+        for (int idx = 0; idx < benignApks.length; ++idx) {
+            jobs.add(new CFGConstructor(idx, benignApks[idx], 0));
+        }
+        for (int idx = 0; idx  < maliciousApks.length; ++idx) {
+            jobs.add(new CFGConstructor(idx, maliciousApks[idx], 1));
         }
         jobs.stream().forEach(job -> {
             ReturnedValue res = job.call();
-            this.apiFreqs.set(res.getIdx(), res.getApiFreq());
-            this.apiSequences.set(res.getIdx(), res.getApiSequence());
+            Map<String, Integer> apiFreq = res.getApiFreq();
+            apiFreq.put(familyKey, res.getFamily());
+            this.apiFreqs.set(res.getIdx(), apiFreq);
+
+            List<String> apiSequence = res.getApiSequence();
+            apiSequence.add(String.valueOf(res.getFamily()));
+            this.apiSequences.set(res.getIdx(), apiSequence);
         });
 
         this.deriveAllApis();
@@ -94,12 +108,16 @@ public class CFG {
 
     public void convertSignatureToIndexInSequence() {
         // signature -> index with allApis info
-        for (int idx=0; idx<apiSequences.size(); ++idx) {
+        for (int idx = 0; idx < apiSequences.size(); ++idx) {
             List<String> apiSequence = apiSequences.get(idx);
             List<Integer> apiSequenceIndex = new LinkedList<>();
 
-            for (int idxJ=0; idxJ<apiSequence.size(); ++idxJ) {
-                apiSequenceIndex.add(this.allApis.get(apiSequence.get(idxJ)));
+            for (int idxJ = 0; idxJ < apiSequence.size(); ++idxJ) {
+                if (idxJ == apiSequence.size()-1) {
+                    apiSequenceIndex.add(Integer.parseInt(apiSequence.get(idxJ)));
+                } else {
+                    apiSequenceIndex.add(this.allApis.get(apiSequence.get(idxJ)));
+                }
             }
 
             this.apiSequenceIndices.set(idx, apiSequenceIndex);
@@ -114,6 +132,9 @@ public class CFG {
         }
         int idx = 0;
         for (String api : allApiSet) {
+            if (api.equals(familyKey)) {
+                continue;
+            }
             this.allApis.put(api, idx++);
         }
     }
@@ -132,7 +153,7 @@ public class CFG {
             // NOTE: As this log file is easilly big, commented out
             // write apiSequences
             // writeJSONWithFileName(objectMapper, apiSequencesFilePath, apiSequences);
-            
+
             // write apiSequences coverted with index
             writeJSONWithFileName(objectMapper, apiSequenceIndicesFilePath, apiSequenceIndices);
         } catch (Exception e) {
