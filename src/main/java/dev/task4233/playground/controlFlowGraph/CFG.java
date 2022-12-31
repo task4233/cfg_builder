@@ -56,6 +56,10 @@ public class CFG {
     private File[] maliciousApks = null;
 
     public CFG(String chunk_idx) {
+        if (chunk_idx.isEmpty()) {
+            return;
+        }
+        
         chunk_i = Integer.valueOf(chunk_idx);
         apk_lb = chunk_range * chunk_i;
         apk_ub = chunk_range * (chunk_i + 1);

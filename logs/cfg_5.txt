@@ -1,0 +1,119 @@
+> Task :compileJava UP-TO-DATE
+> Task :processResources NO-SOURCE
+> Task :classes UP-TO-DATE
+
+> Task :run
+All Apks: 2513
+[2500] start init for VirusShare_ff509e335a316bf930b6a84d0df89f03
+[2500] done init for VirusShare_ff509e335a316bf930b6a84d0df89f03
+[2500] start constructCFG for VirusShare_ff509e335a316bf930b6a84d0df89f03
+[2500] done constructCFG in 1[ms]
+[2500] start getApiSequence for VirusShare_ff509e335a316bf930b6a84d0df89f03
+[2500] done getApiSequence in 37[ms]
+
+---
+[2501] start init for VirusShare_ff7282eb9907132e66b3541ec7d71942
+[2501] done init for VirusShare_ff7282eb9907132e66b3541ec7d71942
+[2501] start constructCFG for VirusShare_ff7282eb9907132e66b3541ec7d71942
+[2501] done constructCFG in 0[ms]
+[2501] start getApiSequence for VirusShare_ff7282eb9907132e66b3541ec7d71942
+[2501] done getApiSequence in 6[ms]
+
+---
+[2502] start init for VirusShare_ff79851c42ccb9292ec4991d29a1ac80
+[2502] done init for VirusShare_ff79851c42ccb9292ec4991d29a1ac80
+[2502] start constructCFG for VirusShare_ff79851c42ccb9292ec4991d29a1ac80
+[2502] done constructCFG in 0[ms]
+[2502] start getApiSequence for VirusShare_ff79851c42ccb9292ec4991d29a1ac80
+[2502] done getApiSequence in 10[ms]
+
+---
+[2503] start init for VirusShare_ff7f26a0f2270783b5abec3ec8de8ddf
+[2503] done init for VirusShare_ff7f26a0f2270783b5abec3ec8de8ddf
+[2503] start constructCFG for VirusShare_ff7f26a0f2270783b5abec3ec8de8ddf
+[2503] done constructCFG in 0[ms]
+[2503] start getApiSequence for VirusShare_ff7f26a0f2270783b5abec3ec8de8ddf
+[2503] done getApiSequence in 5[ms]
+
+---
+[2504] start init for VirusShare_ff83b948c39fbaab4de548fbec11f528
+[2504] done init for VirusShare_ff83b948c39fbaab4de548fbec11f528
+[2504] start constructCFG for VirusShare_ff83b948c39fbaab4de548fbec11f528
+[2504] done constructCFG in 0[ms]
+[2504] start getApiSequence for VirusShare_ff83b948c39fbaab4de548fbec11f528
+[2504] done getApiSequence in 5[ms]
+
+---
+[2505] start init for VirusShare_ff97286a0a49cb319161c0d8572f1bb8
+[2505] done init for VirusShare_ff97286a0a49cb319161c0d8572f1bb8
+[2505] start constructCFG for VirusShare_ff97286a0a49cb319161c0d8572f1bb8
+[2505] done constructCFG in 0[ms]
+[2505] start getApiSequence for VirusShare_ff97286a0a49cb319161c0d8572f1bb8
+[2505] done getApiSequence in 7[ms]
+
+---
+[2506] start init for VirusShare_ff9bbdcff71a8aa72a14383af6bdf182
+[2506] done init for VirusShare_ff9bbdcff71a8aa72a14383af6bdf182
+[2506] start constructCFG for VirusShare_ff9bbdcff71a8aa72a14383af6bdf182
+[2506] done constructCFG in 0[ms]
+[2506] start getApiSequence for VirusShare_ff9bbdcff71a8aa72a14383af6bdf182
+[2506] done getApiSequence in 5[ms]
+
+---
+[2507] start init for VirusShare_ffa5bd02c09f16a5faafa60c7b6d73d9
+[2507] done init for VirusShare_ffa5bd02c09f16a5faafa60c7b6d73d9
+[2507] start constructCFG for VirusShare_ffa5bd02c09f16a5faafa60c7b6d73d9
+[2507] done constructCFG in 0[ms]
+[2507] start getApiSequence for VirusShare_ffa5bd02c09f16a5faafa60c7b6d73d9
+[2507] done getApiSequence in 4[ms]
+
+---
+[2508] start init for VirusShare_ffb376be1e8d8311d320f7a107caee9a
+[2508] done init for VirusShare_ffb376be1e8d8311d320f7a107caee9a
+[2508] start constructCFG for VirusShare_ffb376be1e8d8311d320f7a107caee9a
+[2508] done constructCFG in 1[ms]
+[2508] start getApiSequence for VirusShare_ffb376be1e8d8311d320f7a107caee9a
+[2508] done getApiSequence in 3[ms]
+
+---
+[2509] start init for VirusShare_ffb43ac0a5baf32a00426fdf74080fb2
+[2509] done init for VirusShare_ffb43ac0a5baf32a00426fdf74080fb2
+[2509] start constructCFG for VirusShare_ffb43ac0a5baf32a00426fdf74080fb2
+[2509] done constructCFG in 0[ms]
+[2509] start getApiSequence for VirusShare_ffb43ac0a5baf32a00426fdf74080fb2
+[2509] done getApiSequence in 5[ms]
+
+---
+[2510] start init for VirusShare_ffb7d7dd8b8e1cacf3cbec6496aa8870
+[2510] done init for VirusShare_ffb7d7dd8b8e1cacf3cbec6496aa8870
+[2510] start constructCFG for VirusShare_ffb7d7dd8b8e1cacf3cbec6496aa8870
+[2510] done constructCFG in 0[ms]
+[2510] start getApiSequence for VirusShare_ffb7d7dd8b8e1cacf3cbec6496aa8870
+[2510] done getApiSequence in 5[ms]
+
+---
+[2511] start init for VirusShare_ffbcbca519eb4788d0c2b385f484d1d4
+[2511] done init for VirusShare_ffbcbca519eb4788d0c2b385f484d1d4
+[2511] start constructCFG for VirusShare_ffbcbca519eb4788d0c2b385f484d1d4
+[2511] done constructCFG in 0[ms]
+[2511] start getApiSequence for VirusShare_ffbcbca519eb4788d0c2b385f484d1d4
+[2511] done getApiSequence in 5[ms]
+
+---
+[2512] start init for VirusShare_ffda6fd12e43ce79fa6af19d3baea3b8
+[2512] done init for VirusShare_ffda6fd12e43ce79fa6af19d3baea3b8
+[2512] start constructCFG for VirusShare_ffda6fd12e43ce79fa6af19d3baea3b8
+[2512] done constructCFG in 0[ms]
+[2512] start getApiSequence for VirusShare_ffda6fd12e43ce79fa6af19d3baea3b8
+[2512] done getApiSequence in 9[ms]
+
+---
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 8.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+See https://docs.gradle.org/7.4.2/userguide/command_line_interface.html#sec:command_line_warnings
+
+BUILD SUCCESSFUL in 10s
+2 actionable tasks: 1 executed, 1 up-to-date

@@ -11,7 +11,7 @@ import static org.junit.Assert.*;
 public class CFGTest {
     @Test
     public void testCFGIsCorrectlyGenerated() {
-        CFG cfg = new CFG();
+        CFG cfg = new CFG("");
         assertNotNull(cfg);
 
         // commented out for memory

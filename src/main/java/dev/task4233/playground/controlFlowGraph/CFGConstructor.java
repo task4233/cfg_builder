@@ -35,6 +35,7 @@ public class CFGConstructor implements Callable<ReturnedValue> {
     // family=> 0:benign, 1>=:malicious(might be expanded)
     // TODO: use enum
     private int family = 0;
+    private int count = 0;
 
     private Map<String, Integer> apiFreq = new ConcurrentHashMap<>();
     private SetupApplication app = null;
@@ -122,7 +123,7 @@ public class CFGConstructor implements Callable<ReturnedValue> {
         // continue;
         // }
         // System.out.printf("randomwalk entrypoint: %s\n", app.getDummyMainMethod().getSignature());
-        this.randomWalk(app.getDummyMainMethod(), 0);
+        this.randomWalk(app.getDummyMainMethod());
         // this.randomWalk(sootMethod, 0);
         // }
         // }
@@ -164,19 +165,19 @@ public class CFGConstructor implements Callable<ReturnedValue> {
         }
     }
 
-    private void randomWalk(SootMethod now, int count) {
+    private void randomWalk(SootMethod now) {
         if (now == null) {
             return;
         }
-        if (count >= randomWalkThreshold) {
+        if (this.count >= randomWalkThreshold) {
             return;
         }
         // System.out.printf("now: %s\n", now.getSignature());
-
         boolean isUserDefinedAPI = now.getSignature().startsWith("<com");
         this.randomWalkCache.add(now.getSignature());
         if (!isUserDefinedAPI) {
             this.apiSequence.add(now.getSignature());
+            ++this.count;
         }
 
         Iterator<Edge> inIt = callGraph.edgesInto(now);
@@ -239,7 +240,7 @@ public class CFGConstructor implements Callable<ReturnedValue> {
                     }
                 } while (next == null || next.src() == null || !randomWalkCache.contains(next.src().getSignature()));
                 // System.out.printf("[<- ] src: %s, tgt: %s\n", next.src().getSignature(), next.tgt().getSignature());
-                randomWalk(next.src(), count + (isUserDefinedAPI ? 0 : 1));
+                randomWalk(next.src());
                 return;
             case 1:
                 // forward
@@ -253,7 +254,7 @@ public class CFGConstructor implements Callable<ReturnedValue> {
                     }
                 } while (next == null || next.tgt() == null);
                 // System.out.printf("[-> ] src: %s, tgt: %s\n", next.src().getSignature(), next.tgt().getSignature());
-                randomWalk(next.tgt(), count + (isUserDefinedAPI ? 0 : 1));
+                randomWalk(next.tgt());
                 return;
             default:
                 System.out.println("invalid choice");
