@@ -52,7 +52,10 @@ public class CFGConstructor implements Callable<ReturnedValue> {
 
     @Override
     public ReturnedValue call() {
-        this.init();
+        if (!this.init()) {
+            System.out.printf("failed to make CFG: %s\n", this.apk.getName());
+            return new ReturnedValue(this.idx, this.family, this.apiFreq, this.apiSequence);
+        }
         this.constructCFG();
         this.justifyCFG();
         this.genApiSequence();
@@ -63,7 +66,7 @@ public class CFGConstructor implements Callable<ReturnedValue> {
 
     // constructCFG constructs CallFlowGraph with given index
     private void constructCFG() {
-        System.out.printf("start constructCFG for %s\n", this.apk.getName());
+        System.out.printf("[%d] start constructCFG for %s\n", this.idx, this.apk.getName());
         long startTime = System.currentTimeMillis();
 
         this.traverseMethod(app.getDummyMainMethod());
@@ -106,11 +109,11 @@ public class CFGConstructor implements Callable<ReturnedValue> {
         // }
 
         long endTime = System.currentTimeMillis();
-        System.out.printf("done constructCFG in %d[ms]\n", endTime - startTime);
+        System.out.printf("[%d] done constructCFG in %d[ms]\n", this.idx, endTime - startTime);
     }
 
     private void genApiSequence() {
-        System.out.printf("start getApiSequence for %s\n", this.apk.getName());
+        System.out.printf("[%d] start getApiSequence for %s\n", idx, this.apk.getName());
         long startTime = System.currentTimeMillis();
 
         // for (SootClass sootClass : entrypointSet) {
@@ -125,22 +128,29 @@ public class CFGConstructor implements Callable<ReturnedValue> {
         // }
 
         long endTime = System.currentTimeMillis();
-        System.out.printf("done getApiSequence in %d[ms]\n\n", endTime - startTime);
+        System.out.printf("[%d] done getApiSequence in %d[ms]\n\n", idx, endTime - startTime);
     }
 
-    private void init() {
-        System.out.printf("start init for %s\n", this.apk.getName());
+    private boolean init() {
+        System.out.printf("[%d] start init for %s\n", idx, this.apk.getName());
 
         final InfoflowAndroidConfiguration config = AndroidUtil.getFlowDroidConfig(
                 this.apk.getAbsolutePath(), androidJar, this.cgAlgorithm);
         // System.out.printf("config done for %s\n", this.apk.getName());
 
         // construct cfg without executing taint analysis
-        this.app = new SetupApplication(config);
-        this.app.constructCallgraph(); // heavy
-        this.callGraph = Scene.v().getCallGraph();
+        try {
+            this.app = new SetupApplication(config);
+            this.app.constructCallgraph(); // heavy
+            this.callGraph = Scene.v().getCallGraph();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+        
+        System.out.printf("[%d] done init for %s\n", idx, this.apk.getName());
 
-        System.out.printf("done init for %s\n", this.apk.getName());
+        return true;
     }
 
     // justifyCFG remove user-defined apis from apiFreqMap

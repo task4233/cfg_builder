@@ -12,7 +12,7 @@ public class Main {
 
         switch (args[0]) {
             case "cfg":
-                CFG cfg = new CFG();
+                CFG cfg = new CFG(args[1]);
                 cfg.constructCFG();
                 break;
             default:
