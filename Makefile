@@ -1,19 +1,23 @@
 .PHONY: build
 build: clean
-	./gradlew build
+	./gradlew build 
 
 .PHONY: clean
 clean:
-	./gradlew clean
+	./gradlew clean 
 
 .PHONY: cfg
 cfg: build
-	./gradlew run --args="cfg 0" > logs/cfg_0.txt
-	./gradlew run --args="cfg 1" > logs/cfg_1.txt
-	./gradlew run --args="cfg 2" > logs/cfg_2.txt
-	./gradlew run --args="cfg 3" > logs/cfg_3.txt
-	./gradlew run --args="cfg 4" > logs/cfg_4.txt
-	./gradlew run --args="cfg 5" > logs/cfg_5.txt
+	./gradlew run --args="cfg 0"
+	./gradlew run --args="cfg 1" 
+	./gradlew run --args="cfg 2" 
+	./gradlew run --args="cfg 3" 
+	./gradlew run --args="cfg 4" 
+	./gradlew run --args="cfg 5" 
+	./gradlew run --args="cfg 6" 
+	./gradlew run --args="cfg 7" 
+	./gradlew run --args="cfg 8" 
+	./gradlew run --args="cfg 9" 
 
 .PHONY: docker/build
 docker/build:

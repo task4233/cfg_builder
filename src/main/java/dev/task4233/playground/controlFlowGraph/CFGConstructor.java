@@ -8,7 +8,9 @@ import java.util.Map;
 import java.util.Random;
 import java.util.Set;
 import java.util.concurrent.Callable;
+import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.TimeUnit;
 
 import com.google.common.collect.Iterators;
 
@@ -53,14 +55,31 @@ public class CFGConstructor implements Callable<ReturnedValue> {
 
     @Override
     public ReturnedValue call() {
-        if (!this.init()) {
-            System.out.printf("failed to make CFG: %s\n", this.apk.getName());
-            return new ReturnedValue(this.idx, this.family, this.apiFreq, this.apiSequence);
+        CompletableFuture<Integer> future = CompletableFuture.supplyAsync(() -> {
+            try {
+                if (!this.init()) {
+                    System.out.printf("failed to make CFG: %s\n", this.apk.getName());
+                    return 1;
+                }
+                this.constructCFG();
+                this.justifyCFG();
+                this.genApiSequence();
+                System.out.println("---");
+
+                return 0;
+            } catch(Exception e) {
+                // ignore exception
+                throw e;
+            }
+        });
+        try {
+            // timeout is 60 secs
+            future.get(60000, TimeUnit.MILLISECONDS);
+        } catch (Exception e) {
+            System.err.printf("failed to execute completable future: %s\n", this.apk.getName());
+            // invalid family value on error
+            return new ReturnedValue(idx, this.family, apiFreq, apiSequence);
         }
-        this.constructCFG();
-        this.justifyCFG();
-        this.genApiSequence();
-        System.out.println("---");
 
         return new ReturnedValue(this.idx, this.family, this.apiFreq, this.apiSequence);
     }
