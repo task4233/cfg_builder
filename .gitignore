@@ -30,3 +30,6 @@ gradle-app.setting
 
 # End of https://www.toptal.com/developers/gitignore/api/gradle
 
+gradle
+
+gradle-user-home
